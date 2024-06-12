@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Employee/employeestyle.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="form">
+        <h2>Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Join</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

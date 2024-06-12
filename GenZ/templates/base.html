@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenZ</title>
+
+    <!-- Link CSS file -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+    <!-- Block for additional CSS files -->
+    {% block extra_css %}
+    {% endblock %}
+</head>
+
+<body>
+<!-- Navbar -->
+<div class="navbar">
+    <div class="name">GenZ</div>
+    <div class="login-register">
+        <a href="{% url 'Employee:login' %}">
+            <button>Log In</button>
+        </a>
+
+        <a href="{% url 'Employee:signup' %}">
+            <button>Sign Up</button>
+        </a>
+    </div>
+</div>
+
+    {% block content %}
+        replace me
+    {% endblock %}
+</body>
+</html>
+
+
