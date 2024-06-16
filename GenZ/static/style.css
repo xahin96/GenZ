@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.navbar {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.name {
+  color: white;
+  font-size: 25px;
+}
+
+.navbar .name {
+    text-decoration: none;
+}
+
+.login-register button {
+  background-color: aliceblue;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.login-register button:hover {
+  background-color: #45a049;
+}
+
+.introduction {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.introduction h1 {
+  font-size: 30px;
+}
+
+.introduction p {
+  font-size: 18px;
+  color: #666;
+}

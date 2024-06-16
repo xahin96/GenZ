@@ -6,12 +6,12 @@ from .models import Employee
 
 class EmployeeSignupForm(forms.ModelForm):
     username = forms.CharField(max_length =150, required=True)
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(widget=forms.EmailInput, required=True)
     password1 = forms.CharField(widget=forms.PasswordInput, label="Password", required=True)
     password2 = forms.CharField(widget=forms.PasswordInput, label="Confirm Password", required=True)
 
     class Meta:
-        model = User
+        model = Employee
         fields = ('username', 'email', 'password1', 'password2')
 
     def clean_password2(self):
@@ -31,7 +31,7 @@ class EmployeeSignupForm(forms.ModelForm):
         if commit:
             user.save()
             employee.save()
-        return user
+        return employee
 
 class EmployeeLoginForm(forms.Form):
     email = forms.EmailField(label="Email", required=True)
