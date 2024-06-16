@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GenZ</title>
+    <title>
+        {% block title %}
+            GenZ
+        {% endblock %}
+    </title>
 
     <!-- Link CSS file -->
     {% load static %}
@@ -17,7 +21,9 @@
 <body>
 <!-- Navbar -->
 <div class="navbar">
-    <div class="name">GenZ</div>
+    <a href="{% url 'main:home' %}">
+        <div class="name">GenZ</div>
+    </a>
     <div class="login-register">
         <a href="{% url 'Employee:login' %}">
             <button>Log In</button>
@@ -29,10 +35,9 @@
     </div>
 </div>
 
-    {% block content %}
-        replace me
-    {% endblock %}
+{% block content %}
+    Replace Content Here
+{% endblock %}
+
 </body>
 </html>
-
-

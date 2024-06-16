@@ -10,8 +10,10 @@ def signup_view(request):
             form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            return redirect('Employee:login')
+            authenticated_employee = authenticate(username=username, password=password)
+            if authenticated_employee is not None:
+                login(request, authenticated_employee)
+                return redirect('Employee:login')
     else:
         form = EmployeeSignupForm()
     return render(request, 'Employee/signup.html', {'form': form})
@@ -23,9 +25,9 @@ def login_view(request):
         if form.is_valid():
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-            user = authenticate(request, email=email, password=password)
-            if user is not None:
-                login(request, user)
+            authenticated_employee = authenticate(request, email=email, password=password)
+            if authenticated_employee is not None:
+                login(request, authenticated_employee)
                 return redirect('main:home')
             else:
                 return render(request, 'Employee/login.html', {'form': form})
