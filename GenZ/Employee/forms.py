@@ -34,5 +34,6 @@ class EmployeeSignupForm(forms.ModelForm):
         return employee
 
 class EmployeeLoginForm(forms.Form):
-    email = forms.EmailField(label="Email", required=True)
+    # email = forms.EmailField(label="Email", required=True)
+    username = forms.CharField(max_length =150, required=True)
     password = forms.CharField(widget=forms.PasswordInput, label="Password", required=True)

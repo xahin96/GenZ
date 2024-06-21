@@ -1,5 +1,5 @@
 .container {
-    padding: 20px;
+    padding: 10px;
     border-radius: 12px;
     display: flex;
     justify-content: center;
@@ -11,7 +11,19 @@
     color: white;
     text-align: center;
     padding-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
+}
+
+.error-message-container {
+    min-height: 5px;
+    margin-bottom: 2px;
+}
+
+.error-message {
+    color: #4CAF50;
+    padding: 3px;
+    margin-bottom: 3px;
+    text-align: center;
 }
 
 .form {
@@ -19,7 +31,7 @@
     flex-direction: column;
     align-items: flex-end;
     color: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 300px;
@@ -58,3 +70,4 @@
 .form button:hover {
     background-color: #45a049;
 }
+

@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from .forms import EmployeeSignupForm, EmployeeLoginForm
@@ -12,7 +13,7 @@ def signup_view(request):
             password = form.cleaned_data.get('password1')
             authenticated_employee = authenticate(username=username, password=password)
             if authenticated_employee is not None:
-                login(request, authenticated_employee)
+                messages.success(request, 'Account created successfully!<br>Please log in!')
                 return redirect('Employee:login')
     else:
         form = EmployeeSignupForm()
@@ -23,14 +24,19 @@ def login_view(request):
     if request.method == 'POST':
         form = EmployeeLoginForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data.get('email')
+            # email = form.cleaned_data.get('email')
+            username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-            authenticated_employee = authenticate(request, email=email, password=password)
+            authenticated_employee = authenticate(request, username=username, password=password)
             if authenticated_employee is not None:
                 login(request, authenticated_employee)
-                return redirect('main:home')
+                return redirect('Employee:dashboard')
             else:
-                return render(request, 'Employee/login.html', {'form': form})
+                error_message = 'Invalid username or password!<br>Please try again!'
+                return render(request, 'Employee/login.html', {'form': form, 'error': error_message})
     else:
         form = EmployeeLoginForm()
-        return render(request, 'Employee/login.html', {'form': form})
+    return render(request, 'Employee/login.html', {'form': form})
+
+def dashboard_view(request):
+    return render(request, 'Employee/dashboard.html')
