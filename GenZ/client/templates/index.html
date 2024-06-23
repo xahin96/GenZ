@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}Client Dashboard{% endblock %}
+{% load static %}
+{% block extra_css %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'client.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+     <div class="sidebar">
+        <h2>Navigation</h2>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Trending</a></li>
+            <li><a href="#">Subscriptions</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Submit Your Content and Questions</h1>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea id="content" name="content" placeholder="Enter your content here"></textarea>
+        </div>
+        <div id="questions-container">
+            <div class="form-group">
+                <label for="question1">Question 1</label>
+                <input type="text" id="question1" name="question1" placeholder="Enter your question here">
+            </div>
+        </div>
+        <button class="add-question-button" onclick="addQuestion()">Add Another Question</button>
+        <button class="submit-button" onclick="submitForm()">Submit</button>
+    </div>
+
+    <script>
+        let questionCount = 1;
+
+        function addQuestion() {
+            questionCount++;
+            const questionsContainer = document.getElementById('questions-container');
+            const newQuestionDiv = document.createElement('div');
+            newQuestionDiv.classList.add('form-group');
+            newQuestionDiv.innerHTML = `
+                <label for="question${questionCount}">Question ${questionCount}</label>
+                <input type="text" id="question${questionCount}" name="question${questionCount}" placeholder="Enter your question here">
+            `;
+            questionsContainer.appendChild(newQuestionDiv);
+        }
+
+        function submitForm() {
+            const content = document.getElementById('content').value;
+            const questions = [];
+            for (let i = 1; i <= questionCount; i++) {
+                const question = document.getElementById(`question${i}`).value;
+                if (question) {
+                    questions.push(question);
+                }
+            }
+
+            // Handle form submission logic here, such as sending data to the server.
+            console.log('Content:', content);
+            console.log('Questions:', questions);
+
+            // Clear the form for new submission
+            document.getElementById('content').value = '';
+            document.getElementById('questions-container').innerHTML = `
+                <div class="form-group">
+                    <label for="question1">Question 1</label>
+                    <input type="text" id="question1" name="question1" placeholder="Enter your question here">
+                </div>
+            `;
+            questionCount = 1;
+        }
+    </script>
+</div>
+{% endblock %}
