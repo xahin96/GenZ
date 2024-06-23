@@ -1,4 +1,8 @@
 
+        .container-fluid {
+            display: flex;
+            width: 100%;
+        }
         .sidebar {
             width: 250px;
             background-color: #f9f9f9;
@@ -6,6 +10,7 @@
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
             height: 100vh;
             position: fixed;
+            top: 3.5rem;
             overflow-y: auto;
         }
         .sidebar h2 {
@@ -43,54 +48,79 @@
             font-size: 16px;
         }
         .content {
+            display: flex;
+            flex-direction: column;
             flex: 1;
             padding: 20px;
             margin-left: 250px;
-            overflow-y: auto;
             height: 100vh;
+            overflow-y: auto;
         }
-        .content h1 {
-            font-size: 24px;
-            color: #333;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 8px;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: #007BFF;
-            box-shadow: 0 0 8px rgba(0,123,255,0.25);
-            outline: none;
-        }
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-        .submit-button {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-        .submit-button:hover {
-            background-color: #0056b3;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+ .content-wrapper {
+    display: flex;
+    flex-direction: column-reverse; /* Stack messages from bottom to top */
+    align-items: flex-end; /* Align items to the right (for content-question) */
+    padding: 20px;
+    height: calc(100vh - 100px); /* Adjust height minus padding */
+    overflow-y: auto; /* Enable vertical scroll if needed */
+}
+
+.content-question {
+    align-self: flex-end; /* Align to the right side */
+    max-width: 70%; /* Adjust width as needed */
+    background-color: #dcf8c6; /* Example background color */
+    color: #333; /* Example text color */
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+.content-answer {
+    align-self: flex-start; /* Align to the left side */
+    max-width: 70%; /* Adjust width as needed */
+    background-color: #f0f0f0; /* Example background color */
+    color: #333; /* Example text color */
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+}
+
+
+.form-wrapper {
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 250px); /* Adjust for sidebar width */
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+
+.message-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 96%;
+}
+
+.message-input textarea {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    resize: none;
+    font-size: 14px;
+}
+
+.message-input button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.message-input button:hover {
+    background-color: #0056b3;
+}
