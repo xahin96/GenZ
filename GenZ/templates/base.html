@@ -22,17 +22,35 @@
 <!-- Navbar -->
 <div class="navbar">
     <a href="{% url 'main:home' %}">
-        <div class="name">GenZ</div>
+        <div class="genz">GenZ</div>
     </a>
-    <div class="login-register">
-        <a href="{% url 'Employee:login' %}">
-            <button>Log In</button>
-        </a>
 
-        <a href="{% url 'Employee:signup' %}">
-            <button>Sign Up</button>
-        </a>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="user-menu">
+            <a href="{% url 'Employee:dashboard' %}">
+                <div class="username">{{ user.username }}</div>
+            </a>
+
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                Menu
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item">Edit</a>
+                <a class="dropdown-item">Log Out</a>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="login-register">
+            <a href="{% url 'Employee:login' %}">
+                <button>Log In</button>
+            </a>
+            <a href="{% url 'Employee:signup' %}">
+                <button>Sign Up</button>
+            </a>
+        </div>
+    {% endif %}
 </div>
 
 {% block content %}
