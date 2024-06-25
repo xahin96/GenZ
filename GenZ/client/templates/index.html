@@ -13,26 +13,26 @@
         <div class="sidebar">
             <h2>Navigation</h2>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Trending</a></li>
-                <li><a href="#">Subscriptions</a></li>
+                {% for content in contents %}
+                <li><a href="/client/{{content.pk}}">{{content}}</a></li>
+                {% endfor %}
             </ul>
         </div>
         <div class="content">
             <div class="content-wrapper">
-                {% for content in contents %}
+                {% for question in questions %}
 
                 <div class="content-answer">
                     Dummy
                 </div>
                  <div class="content-question">
-                    {{content}}
+                    {{question}}
                 </div>
                 {% endfor %}
             </div>
 
             <div class="form-wrapper">
-                <form action="/client/submit" method="post">
+                 <form action="{% if questions and questions|length > 0 %}/client/{{ content_id }}/submit{% else %}/client/submit{% endif %}" method="post">
                     {% csrf_token %}
                     <div class="message-input">
                         <textarea id="content" rows="1" name="content" placeholder="Type your message..."></textarea>
