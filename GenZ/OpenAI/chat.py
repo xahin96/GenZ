@@ -12,8 +12,8 @@ from PyPDF2 import PdfReader
 
 load_dotenv()
 
-openai.api_key = "sk-proj-1yFkH3wOlBhkDY7xwWyyT3BlbkFJXoUpo2iJQbJplPN8665L"
-pinecone.init(api_key="1b57b796-e343-477e-a1f8-5534ba5153a6", environment='gcp-starter')
+openai.api_key = ""
+pinecone.init(api_key="", environment='gcp-starter')
 
 pinecone_index_name = 'document-search-index'
 
