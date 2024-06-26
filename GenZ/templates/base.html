@@ -21,28 +21,35 @@
 <body>
 <!-- Navbar -->
 <div class="navbar">
-    <a href="{% url 'main:home' %}">
-        <div class="genz">GenZ</div>
+    <a class="navbar-brand" href="{% url 'main:home' %}">
+        GenZ
     </a>
 
     {% if user.is_authenticated %}
-        <div class="user-menu">
-            <a href="{% url 'Employee:dashboard' %}">
-                <div class="username">{{ user.username }}</div>
-            </a>
-
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
-                Menu
-            </a>
-
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item">Edit</a>
-                <a class="dropdown-item">Log Out</a>
-            </div>
+        <div class="employee-navbar">
+            <ul class="employee-list">
+                <li class="employee-username">
+                    <a href="{% url 'Employee:dashboard' %}">{{ user.username }}</a>
+                </li>
+                <li class="nav-dropdown">
+                    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="menu-icon">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Edit</a>
+                        <a class="dropdown-item" href="#">Log Out</a>
+                    </div>
+                </li>
+            </ul>
         </div>
 
     {% else %}
-        <div class="login-register">
+        <div class="login-signup">
             <a href="{% url 'Employee:login' %}">
                 <button>Log In</button>
             </a>

@@ -10,51 +10,68 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  position: relative;
 }
 
-.genz {
+.navbar-brand {
     text-decoration: none;
     color: white;
     font-size: 25px;
 }
 
-.user-menu {
+.employee-navbar {
   display: flex;
   align-items: flex-end;
+  margin-right: 20px;
+}
+
+.employee-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.employee-list li {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
   position: relative;
 }
 
-.user-menu .dropdown-toggle {
+.employee-username {
   color: white;
-  text-decoration: none;
-  padding: 10px;
-  cursor: pointer;
 }
 
-.user-menu:hover .dropdown-menu  {
-  display: block;
-}
-
-.dropdown-menu {
+.nav-dropdown .dropdown-menu {
   display: none;
   position: absolute;
+  padding-top: 14px;
   top: 100%;
-  right: 0;
+  background-color: #333;
+  color: #4CAF50;
+  min-width: 150px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-right: 10px;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  display: block;
 }
 
 .dropdown-item {
-  display: block;
-  padding: 12px 16px;
+  padding: 8px 8px;
   text-decoration: none;
-  color: black;
+  display: block;
+  color: #666666;
 }
 
 .dropdown-item:hover {
   background-color: #45a049;
-  color: white;
 }
 
-.login-register button {
+.login-signup button {
   background-color: aliceblue;
   color: black;
   border: none;
@@ -68,8 +85,25 @@ body {
   border-radius: 12px;
 }
 
-.login-register button:hover {
+.login-signup button:hover {
   background-color: #45a049;
+}
+
+.menu-icon {
+  display: flex;
+  color: cornsilk;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20px;
+  height: 15px;
+  align-self: flex-end;
+}
+
+.menu-icon div {
+  color: cornsilk;
+  height: 3px;
+  background-color: white;
+  margin: 2px 0;
 }
 
 .introduction {
