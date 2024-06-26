@@ -15,6 +15,7 @@ body {
     width: 100%;
     z-index: 1000;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+
 }
 
 .navbar-brand {
@@ -25,6 +26,25 @@ body {
     color: #fff; /* White text color */
 }
 
+.employee-navbar {
+  display: flex;
+  align-items: flex-end;
+  margin-right: 20px;
+}
+
+.employee-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.employee-list li {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  position: relative;
+    }
 .navbar-nav {
     list-style: none;
     margin: 0;
@@ -51,12 +71,55 @@ body {
 .login-register {
     display: flex;
     align-items: center;
+    }
+.employee-username {
+  color: white;
 }
 
+.nav-dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  padding-top: 14px;
+  top: 100%;
+  background-color: #333;
+  color: #4CAF50;
+  min-width: 150px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-right: 10px;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  padding: 8px 8px;
+  text-decoration: none;
+  display: block;
+  color: #666666;
+}
+
+.dropdown-item:hover {
+  background-color: #45a049;
+    }
 .login-register a {
     margin-left: 10px;
 }
 
+.login-signup button {
+  background-color: aliceblue;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 12px;
+    }
 .login-register button {
     background-color: #007BFF; /* Blue background color */
     color: white;
@@ -78,6 +141,40 @@ body {
     margin-right: 8px; /* Space between icon and text */
 }
 
+.login-signup button:hover {
+  background-color: #45a049;
+}
+
+.menu-icon {
+  display: flex;
+  color: cornsilk;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20px;
+  height: 15px;
+  align-self: flex-end;
+}
+
+.menu-icon div {
+  color: cornsilk;
+  height: 3px;
+  background-color: white;
+  margin: 2px 0;
+}
+
+.introduction {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.introduction h1 {
+  font-size: 30px;
+}
+
+.introduction p {
+  font-size: 18px;
+  color: #666;
+    }
 .login-register button:hover {
     background-color: #0056b3; /* Darker blue on hover */
 }
