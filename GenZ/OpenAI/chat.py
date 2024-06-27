@@ -9,13 +9,15 @@ import pinecone
 from dotenv import load_dotenv
 import logging
 from PyPDF2 import PdfReader
+from pinecone.grpc import PineconeGRPC as Pinecone
+from pinecone import ServerlessSpec
 
+pc = Pinecone(api_key='')
 load_dotenv()
 
 openai.api_key = ""
-pinecone.init(api_key="", environment='gcp-starter')
 
-pinecone_index_name = 'document-search-index'
+pinecone_index_name = 'company5'
 
 
 #
@@ -25,7 +27,7 @@ pinecone_index_name = 'document-search-index'
 #     return content.encode('utf-8', 'ignore').decode('utf-8', 'ignore')
 def load_documents():
     documents = []
-    documents_path = './'
+    documents_path = '../Docs'
     for filename in os.listdir(documents_path):
         if filename.split('.')[-1] == "pdf":
             file_path = os.path.join(documents_path, filename)
@@ -41,7 +43,7 @@ def load_documents():
 
 
 def load_document_content(title):
-    documents_path = './'
+    documents_path = '../Docs'
     file_path = os.path.join(documents_path, title + '.pdf')
     with open(file_path, 'rb') as file:
         reader = PdfReader(file)
@@ -53,11 +55,22 @@ def load_document_content(title):
 
 
 def create_pinecone_index():
-    pinecone.create_index(pinecone_index_name, metric='cosine', dimension=1536)
+    # pinecone.create_index(pinecone_index_name, metric='cosine', dimension=1536)
+    if pinecone_index_name not in pc.list_indexes().names():
+        pc.create_index(
+            name=pinecone_index_name,
+            dimension=1536,
+            metric="cosine",
+            spec=ServerlessSpec(
+                cloud='aws',
+                region='us-east-1'
+            )
+        )
 
 
 def fill_pinecone_index(documents):
-    index = pinecone.Index(pinecone_index_name)
+    index = pc.Index(pinecone_index_name)
+    # index = pinecone.Index(pinecone_index_name)
     for doc in documents:
         try:
             embedding_vector = get_embedding_vector_from_openai(doc['content'])
@@ -77,7 +90,7 @@ def fill_pinecone_index(documents):
 
 
 def query_pinecone_index(query):
-    index = pinecone.Index(pinecone_index_name)
+    index = pc.Index(pinecone_index_name)
     query_embedding_vector = get_embedding_vector_from_openai(query)
     response = index.query(
         vector=query_embedding_vector,
