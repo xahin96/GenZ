@@ -1,9 +1,10 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Charmel, serif;
   margin: 0;
 }
 
 .navbar {
+<<<<<<< HEAD
     background-color: #333; /* Dark background color */
     color: white;
     display: flex;
@@ -24,12 +25,33 @@ body {
     text-transform: uppercase; /* Uppercase text */
     text-decoration: none;
     color: #fff; /* White text color */
+=======
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
 }
 
-.employee-navbar {
+.navbar-brand {
+    padding-left: 30px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+.container-signup-login {
   display: flex;
   align-items: flex-end;
-  margin-right: 20px;
+  margin-right: 30px;
+>>>>>>> 99e7220 (Ruohan | issue 8 | Navbar style updated using bootstrap)
+}
+
+.container-employee {
+  display: flex;
+  align-items: flex-end;
+  margin-right: 50px;
+  padding-bottom: 0;
 }
 
 .employee-list {
@@ -74,19 +96,23 @@ body {
     }
 .employee-username {
   color: white;
+  text-decoration: none;
 }
 
 .nav-dropdown .dropdown-menu {
   display: none;
   position: absolute;
-  padding-top: 14px;
   top: 100%;
   background-color: #333;
   color: #4CAF50;
   min-width: 150px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  z-index: 1;
-  margin-right: 10px;
+  /*box-shadow: 0 8px 16px rgba(0,0,0,0.2);*/
+  /*z-index: 1;*/
+  margin-right: 30px;
+}
+
+.dropdown-menu {
+  right: -40px;
 }
 
 .nav-dropdown:hover .dropdown-menu {
@@ -97,7 +123,7 @@ body {
   padding: 8px 8px;
   text-decoration: none;
   display: block;
-  color: #666666;
+  color: white;
 }
 
 .dropdown-item:hover {
@@ -107,6 +133,7 @@ body {
     margin-left: 10px;
 }
 
+<<<<<<< HEAD
 .login-signup button {
   background-color: aliceblue;
   color: black;
@@ -145,6 +172,8 @@ body {
   background-color: #45a049;
 }
 
+=======
+>>>>>>> 99e7220 (Ruohan | issue 8 | Navbar style updated using bootstrap)
 .menu-icon {
   display: flex;
   color: cornsilk;
@@ -156,9 +185,8 @@ body {
 }
 
 .menu-icon div {
-  color: cornsilk;
   height: 3px;
-  background-color: white;
+  background-color: #45a049;
   margin: 2px 0;
 }
 
