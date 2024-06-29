@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Charmel, serif;
   margin: 0;
 }
 
@@ -10,19 +10,25 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  position: relative;
 }
 
 .navbar-brand {
+    padding-left: 30px;
     text-decoration: none;
     color: white;
-    font-size: 25px;
+    font-size: 20px;
 }
-
-.employee-navbar {
+.container-signup-login {
   display: flex;
   align-items: flex-end;
-  margin-right: 20px;
+  margin-right: 30px;
+}
+
+.container-employee {
+  display: flex;
+  align-items: flex-end;
+  margin-right: 50px;
+  padding-bottom: 0;
 }
 
 .employee-list {
@@ -41,19 +47,23 @@ body {
 
 .employee-username {
   color: white;
+  text-decoration: none;
 }
 
 .nav-dropdown .dropdown-menu {
   display: none;
   position: absolute;
-  padding-top: 14px;
   top: 100%;
   background-color: #333;
   color: #4CAF50;
   min-width: 150px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-  z-index: 1;
-  margin-right: 10px;
+  /*box-shadow: 0 8px 16px rgba(0,0,0,0.2);*/
+  /*z-index: 1;*/
+  margin-right: 30px;
+}
+
+.dropdown-menu {
+  right: -40px;
 }
 
 .nav-dropdown:hover .dropdown-menu {
@@ -64,28 +74,10 @@ body {
   padding: 8px 8px;
   text-decoration: none;
   display: block;
-  color: #666666;
+  color: white;
 }
 
 .dropdown-item:hover {
-  background-color: #45a049;
-}
-
-.login-signup button {
-  background-color: aliceblue;
-  color: black;
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-left: 10px;
-  cursor: pointer;
-  border-radius: 12px;
-}
-
-.login-signup button:hover {
   background-color: #45a049;
 }
 
@@ -100,9 +92,8 @@ body {
 }
 
 .menu-icon div {
-  color: cornsilk;
   height: 3px;
-  background-color: white;
+  background-color: #45a049;
   margin: 2px 0;
 }
 
