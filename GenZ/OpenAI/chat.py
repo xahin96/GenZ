@@ -17,7 +17,7 @@ load_dotenv()
 
 openai.api_key = ""
 
-pinecone_index_name = 'company5'
+pinecone_index_name = 'company1'
 
 
 #
@@ -34,22 +34,29 @@ def load_documents():
             with open(file_path, 'rb') as file:
                 reader = PdfReader(file)
                 content = ""
+                documents_pages = []
                 for page in reader.pages:
+                    page_content = page.extract_text()
                     content += page.extract_text()
+                    documents_pages.append(page_content)
             clean_content = content
-            documents.append({'title': filename.split('.')[0], 'content': clean_content})
+            documents.append({'title': filename.split('.')[0], 'content': documents_pages})
             # print(clean_content[:1000])
     return documents
 
 
-def load_document_content(title):
+def load_document_content(title,pages):
     documents_path = '../Docs'
     file_path = os.path.join(documents_path, title + '.pdf')
+    count = 1
     with open(file_path, 'rb') as file:
         reader = PdfReader(file)
         content = ""
         for page in reader.pages:
-            content += page.extract_text()
+            # page_content = page.extract_text()
+            if (count == pages - 1 or count == pages or count == pages + 1):
+                content += page.extract_text()
+            count += 1
     clean_content = content
     return clean_content
 
@@ -73,17 +80,19 @@ def fill_pinecone_index(documents):
     # index = pinecone.Index(pinecone_index_name)
     for doc in documents:
         try:
-            embedding_vector = get_embedding_vector_from_openai(doc['content'])
-            # embedding_vector = embedding_vector.data[0].embedding
-            # print(embedding_vector)
-            data = pinecone.Vector(
-                id=str(uuid.uuid4()),
-                values=embedding_vector,
-                metadata={'title': doc['title']}
-            )
-            index.upsert([data])
-            print(f'Embedded and inserted document with title ' + doc['title'])
-            time.sleep(1)
+            count = 1
+            for page in doc['content']:
+                embedding_vector = get_embedding_vector_from_openai(page)
+                # embedding_vector = embedding_vector.data[0].embedding
+                # print(embedding_vector)
+                data = pinecone.Vector(
+                    id=str(uuid.uuid4()),
+                    values=embedding_vector,
+                    metadata={'title': doc['title'], 'page': count}
+                )
+                index.upsert([data])
+                print(f'Embedded and inserted document with title ' + doc['title'])
+                count += 1
         except Exception as e:
             print(f'Could not embed and insert document with title ' + doc['title'])
             print(f'Error: {e}')
@@ -97,7 +106,7 @@ def query_pinecone_index(query):
         top_k=1,
         include_metadata=True
     )
-    return response['matches'][0]['metadata']['title']
+    return response['matches'][0]['metadata']['title'],response['matches'][0]['metadata']['page']
 
 
 def get_embedding_vector_from_openai(text):
@@ -105,7 +114,7 @@ def get_embedding_vector_from_openai(text):
     try:
         # Assuming 'openai.embeddings_utils.get_embedding' is a valid function
         # embedding = openai.embeddings_utils.get_embedding(text, engine='text-embedding-ada-002')
-        embedding = openai.Embedding.create(input=text[:1000],engine='text-embedding-3-small')
+        embedding = openai.Embedding.create(input=text,engine='text-embedding-3-small')
         embedding_vector = embedding.data[0].embedding
         return embedding_vector
     except openai.error.InvalidRequestError as ire:
@@ -120,9 +129,9 @@ def get_embedding_vector_from_openai(text):
 
 
 def get_answer_from_openai(question):
-    relevant_document_title = query_pinecone_index(question)
+    relevant_document_title, page = query_pinecone_index(question)
     print(f'Relevant document title: {relevant_document_title}')
-    document_content = load_document_content(relevant_document_title)[:1000]
+    document_content = load_document_content(relevant_document_title,page)
     prompt = create_prompt(question, document_content)
     print(f'Prompt:\n\n{prompt}\n\n')
     completion = openai.ChatCompletion.create(
