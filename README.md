@@ -1,2 +1,2 @@
 Install bootstrap 
-pip install django-bootstrap-v5
+- pip install django-bootstrap-v5
