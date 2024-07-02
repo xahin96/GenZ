@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            GenZ
+        {% endblock %}
+    </title>
+
+    <!-- Link CSS file -->
+
+
+    <!-- Block for additional CSS files -->
+    {% block extra_css %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    {% endblock %}
+     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+<!-- Navbar -->
+ <div class="navbar">
+        <a href="{% url 'main:home' %}" class="navbar-brand">
+            <div class="name">GenZ</div>
+        </a>
+
+        <div class="login-register">
+            <a href="{% url 'Employee:login' %}">
+                <button><i class="bi bi-box-arrow-in-right"></i></button>
+            </a>
+            <a href="{% url 'Employee:signup' %}">
+                <button><i class="bi bi-person-plus"></i></button>
+            </a>
+        </div>
+    </div>
+
+
+
+{% block content %}
+    Replace Content Here
+{% endblock %}
+
+</body>
+</html>
