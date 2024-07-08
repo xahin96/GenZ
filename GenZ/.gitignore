@@ -64,5 +64,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Documents
-Docs
+.idea/misc.xml
