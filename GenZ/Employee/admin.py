@@ -16,7 +16,7 @@ class EmployeeForm(forms.ModelForm):
 class EmployeeAdmin(admin.ModelAdmin):
     form = EmployeeForm
     list_display = ('user', 'organization')
-    search_fields = ('user__email', 'organization__name')
+    search_fields = ('user__email', 'organization__domainname')
 
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Organization)

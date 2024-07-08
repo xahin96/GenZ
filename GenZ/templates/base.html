@@ -10,7 +10,8 @@
     </title>
 
     <!-- Link CSS file -->
-
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 
     <!-- Block for additional CSS files -->
     {% block extra_css %}
@@ -26,22 +27,38 @@
 
 <body>
 <!-- Navbar -->
- <div class="navbar">
-        <a href="{% url 'main:home' %}" class="navbar-brand">
-            <div class="name">GenZ</div>
-        </a>
+<div class="navbar">
+    <a href="{% url 'main:home' %}">
+        <div class="genz">GenZ</div>
+    </a>
 
+    {% if user.is_authenticated %}
+        <div class="user-menu">
+            <a href="{% url 'Employee:dashboard' %}">
+                <div class="username">{{ user.username }}</div>
+            </a>
+
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                Menu
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item">Edit</a>
+                <a class="dropdown-item">Log Out</a>
+            </div>
+        </div>
+
+    {% else %}
         <div class="login-register">
             <a href="{% url 'Employee:login' %}">
-                <button><i class="bi bi-box-arrow-in-right"></i></button>
+                <button>Log In</button>
             </a>
             <a href="{% url 'Employee:signup' %}">
-                <button><i class="bi bi-person-plus"></i></button>
+                <button>Sign Up</button>
             </a>
         </div>
-    </div>
-
-
+    {% endif %}
+</div>
 
 {% block content %}
     Replace Content Here
