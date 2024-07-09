@@ -2,10 +2,36 @@
 
 {% block title %}GenZ{% endblock %}
 
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/home.css' %}">
+{% endblock %}
+
 {% block content %}
-    <!-- Introduction Section -->
-    <div class="introduction">
-        <h1>Welcome</h1>
-        <p>Put some brief introduction here later.</p>
+    <div class="container">
+        <div class="hero">
+            <h1>DESIGN THE FUTURE</h1>
+            <p>Welcome to GenZ. get your questions answered </p>
+            <div class="cta">
+                <a href="https://your-destination-url.com">
+                    <button>Get started</button>
+                </a>
+            </div>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <h2>01</h2>
+                <p> information 1.</p>
+            </div>
+            <div class="feature">
+                <h2>02</h2>
+                <p>information 2</p>
+            </div>
+            <div class="feature">
+                <h2>03</h2>
+                <p> information 3</p>
+            </div>
+        </div>
     </div>
 {% endblock %}

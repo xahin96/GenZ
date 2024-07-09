@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from .forms import EmployeeSignupForm, EmployeeLoginForm
 
 
@@ -40,3 +40,7 @@ def login_view(request):
 
 def dashboard_view(request):
     return render(request, 'Employee/dashboard.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('main:home')
