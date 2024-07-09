@@ -30,7 +30,7 @@ def login_view(request):
             authenticated_employee = authenticate(request, username=username, password=password)
             if authenticated_employee is not None:
                 login(request, authenticated_employee)
-                return redirect('Employee:dashboard')
+                return redirect('Employee:profile')
             else:
                 error_message = 'Invalid username or password!<br>Please try again!'
                 return render(request, 'Employee/login.html', {'form': form, 'error': error_message})
@@ -38,8 +38,8 @@ def login_view(request):
         form = EmployeeLoginForm()
     return render(request, 'Employee/login.html', {'form': form})
 
-def dashboard_view(request):
-    return render(request, 'Employee/dashboard.html')
+def profile_view(request):
+    return render(request, 'Employee/profile.html')
 
 def logout_view(request):
     logout(request)
