@@ -4,6 +4,27 @@ body {
 }
 
 .navbar {
+<<<<<<< HEAD
+    background-color: #333; /* Dark background color */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+
+}
+
+.navbar-brand {
+    font-size: 1.8rem; /* Larger font size */
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    text-decoration: none;
+    color: #fff; /* White text color */
   background-color: #333;
   color: white;
   display: flex;
@@ -43,8 +64,34 @@ body {
   color: white;
   text-decoration: none;
   position: relative;
+    }
+.navbar-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
 
+.nav-item {
+    margin-right: 15px; /* Increased margin */
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #555; /* Darker background on hover */
+    border-radius: 5px;
+}
+
+.login-register {
+    display: flex;
+    align-items: center;
+    }
 .employee-username {
   color: white;
   text-decoration: none;
@@ -81,6 +128,51 @@ body {
   background-color: #45a049;
 }
 
+
+.login-register a {
+    margin-left: 10px;
+}
+
+.login-signup button {
+  background-color: aliceblue;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 12px;
+    }
+
+
+.login-register button {
+    background-color: #007BFF; /* Blue background color */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-register button i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+.login-signup button:hover {
+  background-color: #45a049;
+}
+
 .menu-icon {
   display: flex;
   color: cornsilk;
@@ -109,4 +201,7 @@ body {
 .introduction p {
   font-size: 18px;
   color: #666;
+    }
+.login-register button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
 }
