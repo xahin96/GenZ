@@ -25,4 +25,4 @@ class Employee(models.Model):
         super(Employee, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.user.username
+        return self.user.email

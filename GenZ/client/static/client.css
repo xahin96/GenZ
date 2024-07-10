@@ -124,3 +124,14 @@
 .message-input button:hover {
     background-color: #0056b3;
 }
+
+.add-chat{
+        width: 100%;
+    border: none;
+    background-color: gray;
+    font-weight: 700;
+}
+i{
+    font-size: 1.3em;
+    font-weight: bold;
+}

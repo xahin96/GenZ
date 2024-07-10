@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Profile{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Employee/employeestyle.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h3>Welcome to your dashboard, {{ request.user.username }}!</h3>
+    <p>This is your dashboard where you can manage your account and view your details.</p>
+</div>
+
+{% endblock %}
