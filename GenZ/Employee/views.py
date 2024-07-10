@@ -9,7 +9,7 @@ def signup_view(request):
         form = EmployeeSignupForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
+            username = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password1')
             authenticated_employee = authenticate(username=username, password=password)
             if authenticated_employee is not None:
@@ -25,14 +25,14 @@ def login_view(request):
         form = EmployeeLoginForm(request.POST)
         if form.is_valid():
             # email = form.cleaned_data.get('email')
-            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-            authenticated_employee = authenticate(request, username=username, password=password)
+            authenticated_employee = authenticate(request, username=email, password=password)
             if authenticated_employee is not None:
                 login(request, authenticated_employee)
                 return redirect('Employee:profile')
             else:
-                error_message = 'Invalid username or password!<br>Please try again!'
+                error_message = 'Invalid email or password!<br>Please try again!'
                 return render(request, 'Employee/login.html', {'form': form, 'error': error_message})
     else:
         form = EmployeeLoginForm()
