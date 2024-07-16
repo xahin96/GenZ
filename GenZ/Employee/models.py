@@ -26,3 +26,19 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Task(models.Model):
+    STATUS_CHOICES = [
+        ('RUNNING', 'Running'),
+        ('COMPLETED', 'Completed'),
+    ]
+    task_title = models.CharField(max_length=100, unique=True)
+    task_status = models.CharField(choices=STATUS_CHOICES, max_length=20, default='RUNNING')
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, null=False, blank=False)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, null=False, blank=False)
+
+    def __str__(self):
+        return self.task_title
+
+

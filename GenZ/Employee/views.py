@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import EmployeeSignupForm, EmployeeLoginForm
+from .models import *
 
 
 def signup_view(request):
@@ -44,3 +45,10 @@ def profile_view(request):
 def logout_view(request):
     logout(request)
     return redirect('main:home')
+
+
+def tasklist_view(request):
+    employee = request.user.employee
+    organization = employee.organization
+    tasks = Task.objects.filter(organization=organization)
+    return render(request, 'Employee/tasklist.html', {'tasks': tasks, 'employee': employee, 'organization': organization})

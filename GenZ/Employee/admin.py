@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 from django.contrib.auth.models import User
-from .models import Employee, Organization
+from .models import *
 
 class EmployeeForm(forms.ModelForm):
     class Meta:
@@ -18,5 +18,7 @@ class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('user', 'organization')
     search_fields = ('user__email', 'organization__domainname')
 
+
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Organization)
+admin.site.register(Task)
