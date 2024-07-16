@@ -22,7 +22,7 @@ class Employee(models.Model):
     def save(self, *args, **kwargs):
         # Split the domain of the organization from the user's email
         domain = str(self.user.email).split('@')[1].split('.')[0]
-        org, created = Organization.objects.get_or_create(domain_name=domain)
+        org, created = Organization.objects.get_or_create(domain_name=domain, name = domain)
         self.organization = org
         super(Employee, self).save(*args, **kwargs)
 
