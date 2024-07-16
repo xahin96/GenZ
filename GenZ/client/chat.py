@@ -19,6 +19,7 @@ openai.api_key = ""
 
 # pinecone_index_name = 'company1'
 
+
 def load_documents():
     documents = []
     documents_path = 'D:\djangoProjects\chatgpt\Docs'
@@ -37,6 +38,7 @@ def load_documents():
             documents.append({'title': filename.split('.')[0], 'content': documents_pages})
     return documents
 
+
 def load_document_content(title, pages):
     documents_path = 'D:\djangoProjects\chatgpt\Docs'
     file_path = os.path.join(documents_path, title + '.pdf')
@@ -51,6 +53,7 @@ def load_document_content(title, pages):
     clean_content = content
     return clean_content
 
+
 def create_pinecone_index(company_name):
     pinecone_index_name = company_name
     if pinecone_index_name not in pc.list_indexes().names():
@@ -63,6 +66,7 @@ def create_pinecone_index(company_name):
                 region='us-east-1'
             )
         )
+
 
 def fill_pinecone_index(pinecone_index_name,documents):
     index = pc.Index(pinecone_index_name)
@@ -82,6 +86,7 @@ def fill_pinecone_index(pinecone_index_name,documents):
             print(f'Could not embed and insert document with title ' + doc['title'])
             print(f'Error: {e}')
 
+
 def query_pinecone_index(pinecone_index_name,query):
     index = pc.Index(pinecone_index_name)
     query_embedding_vector = get_embedding_vector_from_openai(query)
@@ -91,6 +96,7 @@ def query_pinecone_index(pinecone_index_name,query):
         include_metadata=True
     )
     return response['matches'][0]['metadata']['title'], response['matches'][0]['metadata']['page']
+
 
 def get_embedding_vector_from_openai(text):
     try:
@@ -107,6 +113,7 @@ def get_embedding_vector_from_openai(text):
         logging.error(f"Unexpected error: {e}")
         raise
 
+
 def get_answer_from_openai(pinecone_index_name,question):
     relevant_document_title, page = query_pinecone_index(pinecone_index_name,question)
     document_content = load_document_content(relevant_document_title, page)
@@ -119,6 +126,7 @@ def get_answer_from_openai(pinecone_index_name,question):
         }]
     )
     return completion.choices[0].message.content
+
 
 def create_prompt(question, document_content):
     return 'You are given a document and a question. Your task is to answer the question based on the document.If there is no information related to the question in the document just say "nothing found in the document"\n\n' \
