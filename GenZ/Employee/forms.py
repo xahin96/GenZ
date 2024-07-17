@@ -43,3 +43,6 @@ class UploadFileForm(forms.ModelForm):
     class Meta:
         model = UploadedFile
         fields = ['file']
+        widgets = {
+            'file': forms.ClearableFileInput(attrs={'class': 'custom-file-input'})
+        }

@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import EmployeeSignupForm, EmployeeLoginForm, UploadFileForm
-from .models import Task
+from .models import Task, Employee, UploadedFile, Organization
+from .chat import *
 
 
 def signup_view(request):
@@ -53,8 +54,8 @@ def train_view(request):
             return redirect('Employee:train')  # Replace 'profile' with your profile URL name
     else:
         form = UploadFileForm()
-
-    return render(request, 'Employee/train.html', {'form': form})
+    files = UploadedFile.objects.all()
+    return render(request, 'Employee/train.html', {'form': form, 'files': files})
 
 
 def logout_view(request):
@@ -74,3 +75,16 @@ def dashboard_view(request):
 
 def profile_view(request):
     return render(request, 'Employee/profile.html')
+
+def fillIndex_view(request):
+    user = request.user
+    company_name = Employee.objects.get(user=user).organization.name
+    print(company_name)
+    index_status = create_pinecone_index(company_name)
+    if index_status:
+        UploadedFile.objects.fetch(organization=Organization.objects.get(name=company_name))
+        documents = load_documents(company_name)
+        print(documents)
+        fill_pinecone_index(company_name, documents)
+
+    return redirect('Employee:tasklist')
