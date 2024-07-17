@@ -11,4 +11,5 @@ urlpatterns = [
     path('tasklist/', tasklist_view, name='tasklist'),
     path("dashboard/", dashboard_view, name="dashboard"),
     path("train/", train_view, name="train"),
+    path("fillIndex/",fillIndex_view,name="fillIndex"),
 ]
