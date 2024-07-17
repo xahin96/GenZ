@@ -11,10 +11,10 @@
 {% block content %}
  <div class="container-fluid">
         <div class="sidebar">
-            <h2>Navigation</h2>
+            <a href ="{% url 'client:home' company_name %}"> <button type = "button" class="btn btn-primary add-chat" ><i class="bi bi-plus-circle"></i></button></a>
             <ul>
                 {% for content in contents %}
-                <li><a href="/client/{{content.pk}}">{{content}}</a></li>
+                <li><a href="/client/{{company_name}}/{{content.pk}}">{{content}}</a></li>
                 {% endfor %}
             </ul>
         </div>
@@ -23,7 +23,7 @@
                 {% for question in questions %}
 
                 <div class="content-answer">
-                    Dummy
+                    {{question.answer}}
                 </div>
                  <div class="content-question">
                     {{question}}
@@ -32,11 +32,11 @@
             </div>
 
             <div class="form-wrapper">
-                 <form action="{% if questions and questions|length > 0 %}/client/{{ content_id }}/submit{% else %}/client/submit{% endif %}" method="post">
+                 <form action="{% if questions and questions|length > 0 %}/client/{{company_name}}/{{ content_id }}/submit{% else %}/client/{{company_name}}/submit{% endif %}" method="post">
                     {% csrf_token %}
                     <div class="message-input">
                         <textarea id="content" rows="1" name="content" placeholder="Type your message..."></textarea>
-                        <button class="btn btn-primary" type="submit">
+                        <button id = "myBtn" class="btn btn-primary" type="submit">
                             <i class="bi bi-arrow-up-circle"></i>
                         </button>
                     </div>
@@ -45,5 +45,22 @@
 
         </div>
     </div>
+<script>
+    // Get the input field
+var input = document.getElementById("content");
+
+// Execute a function when the user presses a key on the keyboard
+input.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("myBtn").click();
+  }
+});
+
+</script>
 
 {% endblock %}
+

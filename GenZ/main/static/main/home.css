@@ -16,6 +16,12 @@ body {
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5); /* Optional: To add a dark overlay */
 }
+.container-dashboard{
+   padding: 1em;
+    display: block !important;
+    width: 85%;
+    margin: 0 auto;
+}
 
 .hero {
     text-align: left;

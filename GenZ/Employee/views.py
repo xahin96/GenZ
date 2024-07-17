@@ -1,8 +1,9 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from .forms import EmployeeSignupForm, EmployeeLoginForm
-from .models import *
+from .forms import EmployeeSignupForm, EmployeeLoginForm, UploadFileForm
+from .models import Task
 
 
 def signup_view(request):
@@ -10,7 +11,7 @@ def signup_view(request):
         form = EmployeeSignupForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
+            username = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password1')
             authenticated_employee = authenticate(username=username, password=password)
             if authenticated_employee is not None:
@@ -26,21 +27,35 @@ def login_view(request):
         form = EmployeeLoginForm(request.POST)
         if form.is_valid():
             # email = form.cleaned_data.get('email')
-            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-            authenticated_employee = authenticate(request, username=username, password=password)
+            authenticated_employee = authenticate(request, username=email, password=password)
             if authenticated_employee is not None:
                 login(request, authenticated_employee)
                 return redirect('Employee:profile')
             else:
-                error_message = 'Invalid username or password!<br>Please try again!'
+                error_message = 'Invalid email or password!<br>Please try again!'
                 return render(request, 'Employee/login.html', {'form': form, 'error': error_message})
     else:
         form = EmployeeLoginForm()
     return render(request, 'Employee/login.html', {'form': form})
 
+
+@login_required
 def profile_view(request):
-    return render(request, 'Employee/profile.html')
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            uploaded_file = form.save(commit=False)
+            uploaded_file.uploaded_by = request.user.employee
+            uploaded_file.organization = request.user.employee.organization
+            uploaded_file.save()
+            return redirect('Employee:profile')  # Replace 'profile' with your profile URL name
+    else:
+        form = UploadFileForm()
+
+    return render(request, 'Employee/profile.html', {'form': form})
+
 
 def logout_view(request):
     logout(request)
