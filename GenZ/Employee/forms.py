@@ -33,11 +33,10 @@ class EmployeeSignupForm(forms.ModelForm):
             employee.save()
         return employee
 
-
 class EmployeeLoginForm(forms.Form):
     # email = forms.EmailField(label="Email", required=True)
-    email = forms.CharField(max_length =150, required=True)
-    password = forms.CharField(widget=forms.PasswordInput, label="Password", required=True)
+    email = forms.CharField(max_length =150, required=True, widget=forms.EmailInput(attrs={'class':'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}), label="Password", required=True)
 
 
 class UploadFileForm(forms.ModelForm):

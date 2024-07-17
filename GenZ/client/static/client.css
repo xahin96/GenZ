@@ -1,6 +1,10 @@
 
+       .navbar{
+           position: fixed; !important;
+       }
         .container-fluid {
             display: flex;
+            padding: 0 !important;
             width: 100%;
         }
         .sidebar {
@@ -128,7 +132,6 @@
 .add-chat{
         width: 100%;
     border: none;
-    background-color: gray;
     font-weight: 700;
 }
 i{

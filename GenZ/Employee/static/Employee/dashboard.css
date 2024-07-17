@@ -5,6 +5,11 @@
             transition: transform 0.3s;
             margin-bottom: 20px;
         }
+
+.card-body{
+    background-color: #6c7a89;
+    color: white;
+}
         .card:hover {
             transform: translateY(-5px);
         }
@@ -16,15 +21,15 @@
         .card-title {
             font-weight: bold;
             font-size: 1.2em;
-            color: #343a40;
+            /*color: #343a40;*/
         }
         .card-number {
             font-size: 1.5em;
             font-weight: bold;
-            color: #6c757d;
+            /*color: #6c757d;*/
         }
         .card-date {
-            color: #6c757d;
+            /*color: #6c757d;*/
             font-size: 0.9em;
         }
         .table thead th {
