@@ -23,6 +23,9 @@ def signup_view(request):
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('Employee:dashboard')
+
     if request.method == 'POST':
         form = EmployeeLoginForm(request.POST)
         if form.is_valid():
