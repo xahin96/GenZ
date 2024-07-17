@@ -12,7 +12,6 @@ from PyPDF2 import PdfReader
 from pinecone.grpc import PineconeGRPC as Pinecone
 from pinecone import ServerlessSpec
 from django.conf import settings
-import re
 media_path = settings.MEDIA_ROOT
 pc = Pinecone(api_key='')
 load_dotenv()
@@ -125,48 +124,24 @@ def get_embedding_vector_from_openai(text):
 
 
 def get_answer_from_openai(pinecone_index_name,question):
-    gr = generic_response(question)
-    if gr == "":
-        relevant_document_title, page = query_pinecone_index(pinecone_index_name,question)
-        document_content = load_document_content(relevant_document_title, page,pinecone_index_name)
-        if document_content:
-            prompt = create_prompt(question, document_content)
-            completion = openai.ChatCompletion.create(
-                model='gpt-3.5-turbo',
-                messages=[{
-                    'role': 'user',
-                    'content': prompt
-                }]
-            )
-            if completion.choices[0].message.content == "Sorry, I cannot answer that questoion. Is there anything else that I can help you with ?":
-                return " Is there anything else that you want to know?"
-            else:
-                return completion.choices[0].message.content + " Is there anything else that you want to know?"
-        else:
-            return "No content found"
+    relevant_document_title, page = query_pinecone_index(pinecone_index_name,question)
+    document_content = load_document_content(relevant_document_title, page,pinecone_index_name)
+    if document_content:
+        prompt = create_prompt(question, document_content)
+        completion = openai.ChatCompletion.create(
+            model='gpt-3.5-turbo',
+            messages=[{
+                'role': 'user',
+                'content': prompt
+            }]
+        )
+        return completion.choices[0].message.content
     else:
-        return gr
-
-
-def generic_response(user_input):
-    # Normalize the input to lowercase
-    user_input = user_input.lower()
-
-    # Define patterns for various generic inputs
-    greetings_pattern = re.compile(r'\b(hi|hello|hey|good morning|good afternoon|good evening|greetings)\b')
-    help_pattern = re.compile(r'\b(help|assist|support|question|info|information|know|explain)\b')
-
-    # Check if the input matches any of the patterns
-    if greetings_pattern.search(user_input):
-        return "Hello! How can I assist you today?"
-    elif help_pattern.search(user_input):
-        return "I'm here to help. What would you like to know?"
-    else:
-        return ""
+        return "No content found"
 
 
 def create_prompt(question, document_content):
-    return 'You are given a document and a question. Your task is to answer the question based on the document. If there is no information related to the question in the document just say "Sorry, I cannot answer that question. Is there anything else that I can help you with ?"\n\n' \
+    return 'You are given a document and a question. Your task is to answer the question based on the document.If there is no information related to the question in the document just say "nothing found in the document"\n\n' \
            'Document:\n\n' \
            f'{document_content}\n\n' \
            f'Question: {question}'
