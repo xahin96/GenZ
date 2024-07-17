@@ -29,13 +29,13 @@
 <body>
 <!-- Navbar -->
 <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-    <a class="navbar-brand" href="{% url 'main:home' %}">GenZ</a>
 
     {% if user.is_authenticated %}
+        <a class="navbar-brand" href="{% url 'Employee:dashboard' %}">GenZ</a>
         <div class="container-employee">
             <ul class="employee-list">
                 <li>
-                    <a class="employee-username" href="{% url 'Employee:profile' %}">Hello, {{ user.username }}!</a>
+                    <a class="employee-username" href="{% url 'Employee:dashboard' %}">Hello, {{ user.username }}!</a>
                 </li>
                 <li class="nav-dropdown">
                     <div class="menu-icon">
@@ -44,15 +44,17 @@
                         <div></div>
                     </div>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'Employee:profile' %}">Profile</a>
-                        <a class="dropdown-item" href="#">Train Your Bot</a>
-                        <a class="dropdown-item" href="#">Edit Your Profile</a>
+                        <a class="dropdown-item" href="{% url 'Employee:profile' %}">Organization</a>
+                        <a class="dropdown-item" href="{% url 'Employee:train' %}">Train</a>
+                        <a class="dropdown-item" href="{% url 'Employee:tasklist' %}">Tasks</a>
                         <a class="dropdown-item" href="{% url 'Employee:logout' %}">Log Out</a>
                     </div>
                 </li>
             </ul>
         </div>
     {% else %}
+        <a class="navbar-brand" href="{% url 'main:home' %}">GenZ</a>
+
         <div class="container-signup-login">
             <a href="{% url 'Employee:signup' %}">
                 <button class="btn btn-outline-success me-2" type="button">Sign Up</button>

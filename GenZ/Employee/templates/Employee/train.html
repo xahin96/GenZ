@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Train Your Bot{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+
+
+{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Employee/employeestyle.css' %}">
+{% block content %}
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+</div>
+
+{% endblock %}

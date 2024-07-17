@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Tasks{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Employee/task.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row mb-3">
+        <h3>Tasks of {{ organization.name }}</h3>
+
+        <div class="col">
+            <button class="btn btn-success float-right" onclick="location.reload();">Refresh</button>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Task ID</th>
+                            <th>Status</th>
+                            <th>Title</th>
+                            <th>Created By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for task in tasks %}
+                        <tr>
+                            <td>{{ task.id }}</td>
+                            <td>{{ task.get_task_status_display }}</td>
+                            <td>{{ task.task_title }}</td>
+                            <td>{{ task.employee }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
