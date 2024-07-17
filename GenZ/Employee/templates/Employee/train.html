@@ -21,7 +21,7 @@
         content: "Browse File";
         display: none;
     }
-    .custom-file-label{
+    .custom-file-label {
         position: relative !important;
         width: 100%;
         background: transparent;
@@ -34,9 +34,9 @@
 <div class="container mt-5">
     <div class="row">
         <!-- Left Side: Table and Upload Form -->
-        <div class="col-md-8">
+        <div>
             <h1>Uploaded Files</h1>
-            <form method="post">
+            <form action="{% url 'Employee:test_view' %}" method="post">
                 {% csrf_token %}
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -66,16 +66,19 @@
                 {% csrf_token %}
                 <div class="custom-file-container" id="file-drop-zone">
                     <input type="file" name="file" class="custom-file-input" id="fileUpload" style="display: none;">
-                    <label class="custom-file-label" for="fileUpload">Choose a file or drag & drop it here<br><small>JPEG, PNG, PDG, and MP4 formats, up to 50MB</small></label>
+                    <label class="custom-file-label" for="fileUpload">Choose a file or drag & drop it here<br><small>JPEG, PNG, PDF, and MP4 formats, up to 50MB</small></label>
                 </div>
                 <button type="submit" class="btn btn-secondary mt-3">Upload</button>
             </form>
         </div>
 
-        <!-- Right Side: Train Button -->
-        <div class="col-md-4 d-flex align-items-start flex-column">
-            <button onclick="location.href='{% url 'Employee:train' %}'" class="btn btn-info mt-4">Upcoming Events</button>
-        </div>
+{#        <!-- Right Side: Train Button -->#}
+{#        <div class="col-md-4 d-flex align-items-start flex-column">#}
+{#            <form action="{% url 'Employee:test_view' %}" method="post" class="mt-4">#}
+{#                {% csrf_token %}#}
+{#                <button type="submit" class="btn btn-info">Train</button>#}
+{#            </form>#}
+{#        </div>#}
     </div>
 </div>
 <script>

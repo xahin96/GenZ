@@ -19,7 +19,10 @@ from .models import Employee, Organization, UploadedFile, Task
 #     search_fields = ('user__email', 'organization__domainname')
 
 
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ('task_title', 'task_status', 'organization', 'employee')
+
 admin.site.register(Employee)
 admin.site.register(Organization)
-admin.site.register(Task)
+admin.site.register(Task, TaskAdmin)
 admin.site.register(UploadedFile)

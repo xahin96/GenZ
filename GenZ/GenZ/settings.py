@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     "Employee.apps.EmployeeConfig",
     "client.apps.ClientConfig",
     "main.apps.MainConfig",
-    "bootstrap5"
+    "bootstrap5",
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,10 @@ AUTHENTICATION_BACKENDS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Celery settings
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'

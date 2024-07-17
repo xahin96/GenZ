@@ -12,4 +12,5 @@ urlpatterns = [
     path("dashboard/", dashboard_view, name="dashboard"),
     path("train/", train_view, name="train"),
     path("fillIndex/",fillIndex_view,name="fillIndex"),
+    path('test-view/', test_view, name='test_view'),
 ]

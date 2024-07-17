@@ -1,9 +1,12 @@
+import time
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import EmployeeSignupForm, EmployeeLoginForm, UploadFileForm
 from .models import Task, Employee, UploadedFile, Organization
+from .tasks import long_running_task
 from .chat import *
 
 
@@ -73,8 +76,10 @@ def tasklist_view(request):
 def dashboard_view(request):
     return render(request, 'Employee/dashboard.html')
 
+
 def profile_view(request):
     return render(request, 'Employee/profile.html')
+
 
 def fillIndex_view(request):
     user = request.user
@@ -88,3 +93,23 @@ def fillIndex_view(request):
         fill_pinecone_index(company_name, documents)
 
     return redirect('Employee:tasklist')
+
+
+@login_required
+def test_view(request):
+    user = request.user
+    print(user)
+    try:
+        employee = Employee.objects.get(user=user)
+    except Employee.DoesNotExist:
+        print('here')
+        messages.error(request, "Employee profile not found.")
+        return redirect('Employee:train')  # Redirect to an appropriate page if the employee profile is not found
+
+    organization = employee.organization
+    task_title = "Test Task"
+    print(employee, organization, task_title)
+    long_running_task.delay(task_title, organization.id, employee.user.id)
+    print('ok')
+    messages.success(request, "Train button clicked and task is running in the background!")
+    return redirect('Employee:train')  # Redirect back to the train view or any other appropriate page

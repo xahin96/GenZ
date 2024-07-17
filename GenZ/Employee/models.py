@@ -44,7 +44,7 @@ class Task(models.Model):
         ('RUNNING', 'Running'),
         ('COMPLETED', 'Completed'),
     ]
-    task_title = models.CharField(max_length=100, unique=True)
+    task_title = models.CharField(max_length=100, unique=False)
     task_status = models.CharField(choices=STATUS_CHOICES, max_length=20, default='RUNNING')
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, null=False, blank=False)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, null=False, blank=False)
