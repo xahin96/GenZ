@@ -12,10 +12,10 @@ from PyPDF2 import PdfReader
 from pinecone.grpc import PineconeGRPC as Pinecone
 from pinecone import ServerlessSpec
 
-pc = Pinecone(api_key='cbce143e-7f60-4ba2-8b50-cb10eb3004a8')
+pc = Pinecone(api_key='')
 load_dotenv()
 
-openai.api_key = "sk-proj-1yFkH3wOlBhkDY7xwWyyT3BlbkFJXoUpo2iJQbJplPN8665L"
+openai.api_key = ""
 
 # pinecone_index_name = 'company1'
 
