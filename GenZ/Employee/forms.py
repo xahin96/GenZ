@@ -6,9 +6,9 @@ from .models import Employee
 
 class EmployeeSignupForm(forms.ModelForm):
     # username = forms.CharField(max_length =150, required=True)
-    email = forms.EmailField(widget=forms.EmailInput, required=True)
-    password1 = forms.CharField(widget=forms.PasswordInput, label="Password", required=True)
-    password2 = forms.CharField(widget=forms.PasswordInput, label="Confirm Password", required=True)
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}), required=True, )
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}), label="Password", required=True)
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}), label="Confirm Password", required=True)
 
     class Meta:
         model = Employee
@@ -35,5 +35,16 @@ class EmployeeSignupForm(forms.ModelForm):
 
 class EmployeeLoginForm(forms.Form):
     # email = forms.EmailField(label="Email", required=True)
+<<<<<<< HEAD
     email = forms.CharField(max_length =150, required=True)
     password = forms.CharField(widget=forms.PasswordInput, label="Password", required=True)
+=======
+    email = forms.CharField(max_length =150, required=True, widget=forms.EmailInput(attrs={'class':'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}), label="Password", required=True)
+
+
+class UploadFileForm(forms.ModelForm):
+    class Meta:
+        model = UploadedFile
+        fields = ['file']
+>>>>>>> develop

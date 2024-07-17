@@ -3,7 +3,7 @@
  {% load static %}
 {% block extra_css %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'main/../../../Employee/static/Employee/dashboard.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'main/dashboard.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'main/home.css' %}">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock %}
@@ -33,6 +33,158 @@
                 <h2>03</h2>
                 <p> information 3</p>
             </div>
+
         </div>
+
+
     </div>
+
+    <div class="flex-grow-1 p-3">
+                <div class="container-dashboard">
+                    <div class="row">
+                        <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title-container">
+                                    <h5 class="card-title">Active Users</h5>
+                                    <div class="card-number">123</div>
+                                </div>
+                                <p class="card-date">2024-07-02</p>
+<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                            </div>
+                        </div>
+                    </div>
+                         <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title-container">
+                                    <h5 class="card-title">No. of Questions</h5>
+                                    <div class="card-number">4512</div>
+                                </div>
+                                <p class="card-date">2024-07-02</p>
+<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                            </div>
+                        </div>
+                    </div>
+                         <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title-container">
+                                    <h5 class="card-title">Avg. Response Time</h5>
+                                    <div class="card-number">0.3s</div>
+                                </div>
+                                <p class="card-date">2024-07-02</p>
+<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title"> </h5>
+                                    <canvas id="myChart" width="400" height="400"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Table</h5>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">First</th>
+                                                <th scope="col">Last</th>
+                                                <th scope="col">Handle</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                                <td>@fat</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>Larry</td>
+                                                <td>the Bird</td>
+                                                <td>@twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['content1','content2','content3','content4','content5'],
+                datasets: [{
+                    label: 'Content Size',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'Response Time',
+                    data: [1, 4, 5, 1, 2, 2],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+</script>
 {% endblock %}
