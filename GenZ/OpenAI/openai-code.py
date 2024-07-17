@@ -2,8 +2,13 @@ import openai
 import pickle
 import os
 
+from dotenv import load_dotenv
+from pinecone import Pinecone
+
 # Load your API key from an environment variable or secret management service
-openai.api_key = ""
+pc = Pinecone(api_key='cbce143e-7f60-4ba2-8b50-cb10eb3004a8')
+load_dotenv()
+openai.api_key = "sk-proj-1yFkH3wOlBhkDY7xwWyyT3BlbkFJXoUpo2iJQbJplPN8665L"
 
 EMBEDDINGS_FILE = "embeddings.pkl"
 

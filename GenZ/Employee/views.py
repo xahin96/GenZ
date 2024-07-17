@@ -32,7 +32,7 @@ def login_view(request):
             authenticated_employee = authenticate(request, username=email, password=password)
             if authenticated_employee is not None:
                 login(request, authenticated_employee)
-                return redirect('Employee:profile')
+                return redirect('Employee:dashboard')
             else:
                 error_message = 'Invalid email or password!<br>Please try again!'
                 return render(request, 'Employee/login.html', {'form': form, 'error': error_message})
@@ -42,7 +42,7 @@ def login_view(request):
 
 
 @login_required
-def profile_view(request):
+def train_view(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -50,11 +50,11 @@ def profile_view(request):
             uploaded_file.uploaded_by = request.user.employee
             uploaded_file.organization = request.user.employee.organization
             uploaded_file.save()
-            return redirect('Employee:profile')  # Replace 'profile' with your profile URL name
+            return redirect('Employee:train')  # Replace 'profile' with your profile URL name
     else:
         form = UploadFileForm()
 
-    return render(request, 'Employee/profile.html', {'form': form})
+    return render(request, 'Employee/train.html', {'form': form})
 
 
 def logout_view(request):
@@ -67,3 +67,10 @@ def tasklist_view(request):
     organization = employee.organization
     tasks = Task.objects.filter(organization=organization)
     return render(request, 'Employee/tasklist.html', {'tasks': tasks, 'employee': employee, 'organization': organization})
+
+
+def dashboard_view(request):
+    return render(request, 'Employee/dashboard.html')
+
+def profile_view(request):
+    return render(request, 'Employee/profile.html')

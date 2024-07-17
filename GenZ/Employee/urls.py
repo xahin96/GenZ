@@ -9,4 +9,6 @@ urlpatterns = [
     path('profile/', profile_view, name='profile'),
     path('logout/', logout_view, name='logout'),
     path('tasklist/', tasklist_view, name='tasklist'),
+    path("dashboard/", dashboard_view, name="dashboard"),
+    path("train/", train_view, name="train"),
 ]
