@@ -11,8 +11,12 @@
 {% block content %}
 
 <div class="container">
-    <div class="form">
-        <h2>Log In</h2>
+     <div class="login-form card">
+        <div class="card-header">
+            <h5 class="card-title">Login</h5>
+        </div>
+        <div class="card-body">
+<!--    <div class="form">-->
 
         <div class="error-message-container">
             {% if error %}
@@ -21,12 +25,21 @@
             </div>
             {% endif %}
         </div>
-
-        <form method="post">
+        <form class="" method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Log In</button>
+                <div class="mb-3">
+                    <label class="form-label">Email address</label>
+                    {{form.email}}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                     {{form.password}}
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-outline-secondary mt-2">Clear</button>
         </form>
-    </div>
+<!--    </div>-->
+        </div>
+     </div>
 </div>
 {% endblock %}

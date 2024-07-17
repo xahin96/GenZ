@@ -11,7 +11,8 @@ import logging
 from PyPDF2 import PdfReader
 from pinecone.grpc import PineconeGRPC as Pinecone
 from pinecone import ServerlessSpec
-
+from django.conf import settings
+media_path = settings.MEDIA_ROOT
 pc = Pinecone(api_key='cbce143e-7f60-4ba2-8b50-cb10eb3004a8')
 load_dotenv()
 
@@ -19,37 +20,45 @@ openai.api_key = "sk-proj-1yFkH3wOlBhkDY7xwWyyT3BlbkFJXoUpo2iJQbJplPN8665L"
 
 # pinecone_index_name = 'company1'
 
-def load_documents():
+
+def load_documents(company_name):
     documents = []
-    documents_path = 'D:\djangoProjects\chatgpt\Docs'
-    for filename in os.listdir(documents_path):
-        if filename.split('.')[-1] == "pdf":
-            file_path = os.path.join(documents_path, filename)
-            with open(file_path, 'rb') as file:
-                reader = PdfReader(file)
-                content = ""
-                documents_pages = []
-                for page in reader.pages:
-                    page_content = page.extract_text()
-                    content += page.extract_text()
-                    documents_pages.append(page_content)
-            clean_content = content
-            documents.append({'title': filename.split('.')[0], 'content': documents_pages})
+    documents_path = media_path + '\\' + company_name + '\\'
+    if os.path.exists(documents_path) and os.path.isdir(documents_path):
+        print(media_path)
+        for filename in os.listdir(documents_path):
+            if filename.split('.')[-1] == "pdf":
+                file_path = os.path.join(documents_path, filename)
+                with open(file_path, 'rb') as file:
+                    reader = PdfReader(file)
+                    content = ""
+                    documents_pages = []
+                    for page in reader.pages:
+                        page_content = page.extract_text()
+                        content += page.extract_text()
+                        documents_pages.append(page_content)
+                clean_content = content
+                documents.append({'title': filename.split('.')[0], 'content': documents_pages})
     return documents
 
-def load_document_content(title, pages):
-    documents_path = 'D:\djangoProjects\chatgpt\Docs'
-    file_path = os.path.join(documents_path, title + '.pdf')
-    count = 1
-    with open(file_path, 'rb') as file:
-        reader = PdfReader(file)
-        content = ""
-        for page in reader.pages:
-            if (count == pages - 1 or count == pages or count == pages + 1):
-                content += page.extract_text()
-            count += 1
-    clean_content = content
+
+def load_document_content(title, pages, company_name):
+    clean_content = ""
+    documents_path = media_path + '\\' + company_name + '\\'
+    print(documents_path)
+    if os.path.exists(documents_path) and os.path.isdir(documents_path):
+        file_path = os.path.join(documents_path, title + '.pdf')
+        count = 1
+        with open(file_path, 'rb') as file:
+            reader = PdfReader(file)
+            content = ""
+            for page in reader.pages:
+                if (count == pages - 1 or count == pages or count == pages + 1):
+                    content += page.extract_text()
+                count += 1
+        clean_content = content
     return clean_content
+
 
 def create_pinecone_index(company_name):
     pinecone_index_name = company_name
@@ -63,6 +72,10 @@ def create_pinecone_index(company_name):
                 region='us-east-1'
             )
         )
+        return True
+    else:
+        return False
+
 
 def fill_pinecone_index(pinecone_index_name,documents):
     index = pc.Index(pinecone_index_name)
@@ -82,6 +95,7 @@ def fill_pinecone_index(pinecone_index_name,documents):
             print(f'Could not embed and insert document with title ' + doc['title'])
             print(f'Error: {e}')
 
+
 def query_pinecone_index(pinecone_index_name,query):
     index = pc.Index(pinecone_index_name)
     query_embedding_vector = get_embedding_vector_from_openai(query)
@@ -91,6 +105,7 @@ def query_pinecone_index(pinecone_index_name,query):
         include_metadata=True
     )
     return response['matches'][0]['metadata']['title'], response['matches'][0]['metadata']['page']
+
 
 def get_embedding_vector_from_openai(text):
     try:
@@ -107,21 +122,26 @@ def get_embedding_vector_from_openai(text):
         logging.error(f"Unexpected error: {e}")
         raise
 
+
 def get_answer_from_openai(pinecone_index_name,question):
     relevant_document_title, page = query_pinecone_index(pinecone_index_name,question)
-    document_content = load_document_content(relevant_document_title, page)
-    prompt = create_prompt(question, document_content)
-    completion = openai.ChatCompletion.create(
-        model='gpt-3.5-turbo',
-        messages=[{
-            'role': 'user',
-            'content': prompt
-        }]
-    )
-    return completion.choices[0].message.content
+    document_content = load_document_content(relevant_document_title, page,pinecone_index_name)
+    if document_content:
+        prompt = create_prompt(question, document_content)
+        completion = openai.ChatCompletion.create(
+            model='gpt-3.5-turbo',
+            messages=[{
+                'role': 'user',
+                'content': prompt
+            }]
+        )
+        return completion.choices[0].message.content
+    else:
+        return "No content found"
+
 
 def create_prompt(question, document_content):
-    return 'You are given a document and a question. Your task is to answer the question based on the document.\n\n' \
+    return 'You are given a document and a question. Your task is to answer the question based on the document.If there is no information related to the question in the document just say "nothing found in the document"\n\n' \
            'Document:\n\n' \
            f'{document_content}\n\n' \
            f'Question: {question}'

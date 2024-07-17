@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block title %}Train Your Bot{% endblock %}
+
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    .custom-file-container {
+        border: 2px dashed #ced4da;
+        padding: 30px;
+        text-align: center;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .custom-file-container:hover {
+        background-color: #f8f9fa;
+    }
+    .custom-file-label::after {
+        content: "Browse File";
+        display: none;
+    }
+    .custom-file-label {
+        position: relative !important;
+        width: 100%;
+        background: transparent;
+        border: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <!-- Left Side: Table and Upload Form -->
+        <div>
+            <h1>Uploaded Files</h1>
+            <form action="{% url 'Employee:test_view' %}" method="post">
+                {% csrf_token %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Select</th>
+                                <th scope="col">File Name</th>
+                                <th scope="col">Uploaded By</th>
+                                <th scope="col">Upload Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for file in files %}
+                            <tr>
+                                <td><input type="checkbox" name="files" value="{{ file.id }}"></td>
+                                <td>{{ file.file.name }}</td>
+                                <td>{{ file.uploaded_by.user.email }}</td>
+                                <td>{{ file.upload_date }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Train</button>
+            </form>
+            <form method="post" enctype="multipart/form-data" class="mt-4">
+                {% csrf_token %}
+                <div class="custom-file-container" id="file-drop-zone">
+                    <input type="file" name="file" class="custom-file-input" id="fileUpload" style="display: none;">
+                    <label class="custom-file-label" for="fileUpload">Choose a file or drag & drop it here<br><small>JPEG, PNG, PDF, and MP4 formats, up to 50MB</small></label>
+                </div>
+                <button type="submit" class="btn btn-secondary mt-3">Upload</button>
+            </form>
+        </div>
+
+{#        <!-- Right Side: Train Button -->#}
+{#        <div class="col-md-4 d-flex align-items-start flex-column">#}
+{#            <form action="{% url 'Employee:test_view' %}" method="post" class="mt-4">#}
+{#                {% csrf_token %}#}
+{#                <button type="submit" class="btn btn-info">Train</button>#}
+{#            </form>#}
+{#        </div>#}
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var dropZone = document.getElementById('file-drop-zone');
+        var fileInput = document.getElementById('fileUpload');
+
+        dropZone.addEventListener('click', function() {
+            fileInput.click();
+        });
+
+        dropZone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.remove('dragover');
+
+            var files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                var event = new Event('change', { 'bubbles': true });
+                fileInput.dispatchEvent(event);
+            }
+        });
+
+        fileInput.addEventListener('change', function() {
+            var fileName = fileInput.files[0].name;
+            var label = dropZone.querySelector('.custom-file-label');
+            label.textContent = fileName;
+        });
+    });
+</script>
+{% endblock %}

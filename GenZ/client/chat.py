@@ -121,7 +121,7 @@ def get_answer_from_openai(pinecone_index_name,question):
     return completion.choices[0].message.content
 
 def create_prompt(question, document_content):
-    return 'You are given a document and a question. Your task is to answer the question based on the document.\n\n' \
+    return 'You are given a document and a question. Your task is to answer the question based on the document.If there is no information related to the question in the document just say "nothing found in the document"\n\n' \
            'Document:\n\n' \
            f'{document_content}\n\n' \
            f'Question: {question}'
