@@ -166,7 +166,7 @@ def generic_response(user_input):
 
 
 def create_prompt(question, document_content):
-    return 'You are given a document and a question. Your task is to answer the question based on the document. If there is no information related to the question in the document just say "Sorry, I cannot answer that questoion. Is there anything else that I can help you with ?"\n\n' \
+    return 'You are given a document and a question. Your task is to answer the question based on the document. If there is no information related to the question in the document just say "Sorry, I cannot answer that question. Is there anything else that I can help you with ?"\n\n' \
            'Document:\n\n' \
            f'{document_content}\n\n' \
            f'Question: {question}'
