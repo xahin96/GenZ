@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import JsonResponse
 from .models import *
-# from .chat import get_answer_from_openai
+from .chat import get_answer_from_openai
 
 
 # Create your views here.
