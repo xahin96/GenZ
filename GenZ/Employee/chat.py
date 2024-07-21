@@ -13,21 +13,22 @@ from pinecone.grpc import PineconeGRPC as Pinecone
 from pinecone import ServerlessSpec
 from django.conf import settings
 media_path = settings.MEDIA_ROOT
-pc = Pinecone(api_key='cbce143e-7f60-4ba2-8b50-cb10eb3004a8')
+pc = Pinecone(api_key='')
 load_dotenv()
 
-openai.api_key = "sk-proj-1yFkH3wOlBhkDY7xwWyyT3BlbkFJXoUpo2iJQbJplPN8665L"
+openai.api_key = ""
 
 # pinecone_index_name = 'company1'
 
 
-def load_documents(company_name):
+def load_documents(company_name,file_paths):
     documents = []
     documents_path = media_path + '\\' + company_name + '\\'
     if os.path.exists(documents_path) and os.path.isdir(documents_path):
         print(media_path)
         for filename in os.listdir(documents_path):
-            if filename.split('.')[-1] == "pdf":
+            if filename.split('.')[-1] == "pdf" and (filename.split('.')[0] in file_paths):
+                print("Uploading " + filename)
                 file_path = os.path.join(documents_path, filename)
                 with open(file_path, 'rb') as file:
                     reader = PdfReader(file)

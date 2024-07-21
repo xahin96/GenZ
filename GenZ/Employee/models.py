@@ -34,7 +34,7 @@ class UploadedFile(models.Model):
     uploaded_by = models.ForeignKey(Employee, on_delete=models.CASCADE)
     file = models.FileField(upload_to=user_directory_path)
     upload_date = models.DateTimeField(auto_now_add=True)
-
+    trained = models.BooleanField(default=False)
     def __str__(self):
         return f'{self.file.name} uploaded by {self.uploaded_by.user.email}'
 

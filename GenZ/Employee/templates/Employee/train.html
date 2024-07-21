@@ -36,7 +36,8 @@
         <!-- Left Side: Table and Upload Form -->
         <div>
             <h1>Uploaded Files</h1>
-            <form action="{% url 'Employee:test_view' %}" method="post">
+            {% if files %}
+            <form action="{% url 'Employee:fillIndex' %}" method="post">
                 {% csrf_token %}
                 <div class="table-responsive">
                     <table class="table table-hover">
@@ -46,6 +47,7 @@
                                 <th scope="col">File Name</th>
                                 <th scope="col">Uploaded By</th>
                                 <th scope="col">Upload Date</th>
+                                <th scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,13 +57,22 @@
                                 <td>{{ file.file.name }}</td>
                                 <td>{{ file.uploaded_by.user.email }}</td>
                                 <td>{{ file.upload_date }}</td>
+                                <td>{% if file.trained %}
+                                     <span class="text-success">Trained</span>
+                                    {% else %}
+                                    <span class="text-danger">Not Trained</span>
+                                    {% endif %}
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Train</button>
+                    <button type="submit" class="btn btn-primary mt-3">Train</button>
             </form>
+            {% else %}
+                <span class="custom-file-label">You haven't uploaded any documents yet!</span>
+            {% endif %}
             <form method="post" enctype="multipart/form-data" class="mt-4">
                 {% csrf_token %}
                 <div class="custom-file-container" id="file-drop-zone">
@@ -71,7 +82,7 @@
                 <button type="submit" class="btn btn-secondary mt-3">Upload</button>
             </form>
         </div>
-
+        <a href="/client/{{ organization }}">Test you bot here!</a>
 {#        <!-- Right Side: Train Button -->#}
 {#        <div class="col-md-4 d-flex align-items-start flex-column">#}
 {#            <form action="{% url 'Employee:test_view' %}" method="post" class="mt-4">#}

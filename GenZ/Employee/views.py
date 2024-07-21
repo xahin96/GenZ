@@ -8,7 +8,7 @@ from .forms import EmployeeSignupForm, EmployeeLoginForm, UploadFileForm
 from .models import Task, Employee, UploadedFile, Organization
 from .tasks import long_running_task
 from .chat import *
-
+import os
 
 def signup_view(request):
     if request.method == 'POST':
@@ -20,6 +20,10 @@ def signup_view(request):
             authenticated_employee = authenticate(username=username, password=password)
             if authenticated_employee is not None:
                 messages.success(request, 'Account created successfully!<br>Please log in!')
+                org_name = Organization.objects.filter(name=username.split('@')[1].split('.')[0]).first().name
+                index_status = create_pinecone_index(org_name)
+                if index_status:
+                    print("index with name ",org_name," created successfully")
                 return redirect('Employee:login')
     else:
         form = EmployeeSignupForm()
@@ -57,8 +61,8 @@ def train_view(request):
             return redirect('Employee:train')  # Replace 'profile' with your profile URL name
     else:
         form = UploadFileForm()
-    files = UploadedFile.objects.all()
-    return render(request, 'Employee/train.html', {'form': form, 'files': files})
+    files = UploadedFile.objects.filter(organization=request.user.employee.organization)
+    return render(request, 'Employee/train.html', {'form': form, 'files': files,'organization': request.user.employee.organization.name})
 
 
 def logout_view(request):
@@ -83,16 +87,31 @@ def profile_view(request):
 
 def fillIndex_view(request):
     user = request.user
+    print(user)
+    try:
+        employee = Employee.objects.get(user=user)
+    except Employee.DoesNotExist:
+        print('here')
+        messages.error(request, "Employee profile not found.")
+        return redirect('Employee:train')  # Redirect to an appropriate page if the employee profile is not found
+
     company_name = Employee.objects.get(user=user).organization.name
     print(company_name)
     index_status = create_pinecone_index(company_name)
-    if index_status:
-        UploadedFile.objects.fetch(organization=Organization.objects.get(name=company_name))
-        documents = load_documents(company_name)
-        print(documents)
+    if not index_status:
+        files = UploadedFile.objects.filter(organization=Organization.objects.get(name=company_name))
+        file_paths = []
+        for file in files:
+            if not file.trained:
+                file_paths.append(os.path.splitext(os.path.basename(file.file.name))[0])
+                file.trained = True
+                file.save()
+        print(file_paths)
+        documents = load_documents(company_name,file_paths)
+        # print(documents)
         fill_pinecone_index(company_name, documents)
 
-    return redirect('Employee:tasklist')
+    return redirect('Employee:train')
 
 
 @login_required
