@@ -2,26 +2,19 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('https://images.spiceworks.com/wp-content/uploads/2022/11/03124136/Shutterstock_2124404834.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #fff;
-    text-align: center;
 }
-
-/*.container {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    height: 100vh;*/
-/*    background-color: rgba(0, 0, 0, 0.5); !* Optional: To add a dark overlay *!*/
-/*}*/
+.home-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 .container-dashboard{
    padding: 1em;
     display: block !important;
     width: 85%;
     margin: 0 auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Optional: To add a dark overlay */
+    /*background-color: rgba(0, 0, 0, 0.5); !* Optional: To add a dark overlay *!*/
 }
 
 .hero {
@@ -44,22 +37,20 @@ body {
 .cta button {
     padding: 10px 20px;
     font-size: 1em;
-    color: #000;
-    background-color: #fff;
-    border: none;
+    /*color: #000;*/
+    /*background-color: #fff;*/
+    /*border: none;*/
     cursor: pointer;
 }
 
-.features {
+.card{
+   border: solid;
+    position: relative;
     display: flex;
-    justify-content: space-around;
-    margin-top: 40px;
-    width: 100%;
-}
-
-.feature {
-    background-color: rgba(108, 122, 137);, 0.2;
-    padding: 20px;
-    width: 30%;
-    border-radius: 10px;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 3px solid #63aeff;
+    border-radius: .25rem;
 }
