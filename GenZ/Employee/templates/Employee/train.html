@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
     .custom-file-container {
-        border: 2px dashed #ced4da;
+        border: 2px dashed #63aeff;
         padding: 30px;
         text-align: center;
         border-radius: 5px;
@@ -26,16 +26,62 @@
         width: 100%;
         background: transparent;
         border: none;
+            font-size: 1.4rem;
     }
+    .container {
+        padding: 10px;
+        width: 100%;
+        display: block;
+    }
+    i{
+        font-size: 7rem;
+        color: #63aeff;
+    }
+    .table .thead-dark th {
+    color: #fff;
+    background-color: #63aeff;
+    border-color: #63aeff;
+    }
+    .test-bot{
+            float: right;
+            padding: 0.4rem;
+            border: 1px solid #63aeff;
+            border-radius: 4px;
+    }
+    .upload-files-header{
+            border-bottom: 3px solid #63aeff;
+    padding: 0px 0px 5px 0px;
+    margin-top: 1.2rem;
+    color: gray;
+    }
+
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-2">
     <div class="row">
         <!-- Left Side: Table and Upload Form -->
-        <div>
-            <h1>Uploaded Files</h1>
+
+        <div class="col-md-4">
+            <form method="post" enctype="multipart/form-data" class="mt-4">
+                {% csrf_token %}
+                <div class="custom-file-container" id="file-drop-zone">
+
+                    <input type="file" name="file" class="custom-file-input" id="fileUpload" style="display: none;">
+                    <label class="custom-file-label" for="fileUpload">Choose a file or drag & drop it here<br><small>JPEG, PNG, PDF, and MP4 formats, up to 50MB</small></label>
+                     <div style="text-align: center; margin-top: 10px;">
+                        <i class="bi bi-cloud-arrow-up-fill"></i>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-primary mt-2">Upload</button>
+                <a class="test-bot mt-2" href="/client/{{ organization }}">Test you bot here!</a>
+            </form>
+
+        </div>
+
+         <div class="col-md-8">
+            <h3 class="upload-files-header">Uploaded Files</h3>
             {% if files %}
             <form action="{% url 'Employee:fillIndex' %}" method="post">
                 {% csrf_token %}
@@ -68,21 +114,14 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="text-right">
                     <button type="submit" class="btn btn-primary mt-3">Train</button>
+                </div>
             </form>
             {% else %}
                 <span class="custom-file-label">You haven't uploaded any documents yet!</span>
             {% endif %}
-            <form method="post" enctype="multipart/form-data" class="mt-4">
-                {% csrf_token %}
-                <div class="custom-file-container" id="file-drop-zone">
-                    <input type="file" name="file" class="custom-file-input" id="fileUpload" style="display: none;">
-                    <label class="custom-file-label" for="fileUpload">Choose a file or drag & drop it here<br><small>JPEG, PNG, PDF, and MP4 formats, up to 50MB</small></label>
-                </div>
-                <button type="submit" class="btn btn-secondary mt-3">Upload</button>
-            </form>
         </div>
-        <a href="/client/{{ organization }}">Test you bot here!</a>
 {#        <!-- Right Side: Train Button -->#}
 {#        <div class="col-md-4 d-flex align-items-start flex-column">#}
 {#            <form action="{% url 'Employee:test_view' %}" method="post" class="mt-4">#}
