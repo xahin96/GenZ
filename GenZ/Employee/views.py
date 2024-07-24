@@ -1,5 +1,5 @@
 import time
-
+from client.models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -8,6 +8,7 @@ from .forms import EmployeeSignupForm, EmployeeLoginForm, UploadFileForm
 from .models import Task, Employee, UploadedFile, Organization
 from .tasks import long_running_task
 from .chat import *
+
 import os
 
 def signup_view(request):
@@ -78,7 +79,18 @@ def tasklist_view(request):
 
 
 def dashboard_view(request):
-    return render(request, 'Employee/dashboard.html')
+    no_of_organizations = Organization.objects.all().count()
+    no_of_tasks = Task.objects.all().count()
+    no_of_users = Employee.objects.all().count()
+    no_of_questions = Question.objects.all().count()
+    no_of_uploaded_files = UploadedFile.objects.all().count()
+    no_of_trained_files = UploadedFile.objects.filter(trained=True).count()
+
+    context = {'no_of_organizations': no_of_organizations, 'no_of_tasks': no_of_tasks,
+               'no_of_users': no_of_users, 'no_of_questions': no_of_questions,
+               'no_of_uploaded_files': no_of_uploaded_files, 'no_of_trained_files': no_of_trained_files}
+
+    return render(request, 'Employee/dashboard.html',context)
 
 
 def profile_view(request):
