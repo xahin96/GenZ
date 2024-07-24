@@ -13,5 +13,6 @@ urlpatterns = [
     path("train/", train_view, name="train"),
     path('profile/<str:domain_name>/', profile_view, name='profile'),
     path('profile/<str:domain_name>/edit/', edit_profile, name='edit_profile'),
-
+    path("fillIndex/",fillIndex_view,name="fillIndex"),
+    path('test-view/', test_view, name='test_view'),
 ]

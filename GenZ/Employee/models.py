@@ -34,7 +34,7 @@ class UploadedFile(models.Model):
     uploaded_by = models.ForeignKey(Employee, on_delete=models.CASCADE)
     file = models.FileField(upload_to=user_directory_path)
     upload_date = models.DateTimeField(auto_now_add=True)
-
+    trained = models.BooleanField(default=False)
     def __str__(self):
         return f'{self.file.name} uploaded by {self.uploaded_by.user.email}'
 
@@ -44,7 +44,7 @@ class Task(models.Model):
         ('RUNNING', 'Running'),
         ('COMPLETED', 'Completed'),
     ]
-    task_title = models.CharField(max_length=100, unique=True)
+    task_title = models.CharField(max_length=100, unique=False)
     task_status = models.CharField(choices=STATUS_CHOICES, max_length=20, default='RUNNING')
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, null=False, blank=False)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, null=False, blank=False)

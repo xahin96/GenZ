@@ -157,12 +157,15 @@ def generic_response(user_input):
     # Define patterns for various generic inputs
     greetings_pattern = re.compile(r'\b(hi|hello|hey|good morning|good afternoon|good evening|greetings)\b')
     help_pattern = re.compile(r'\b(help|assist|support|question|info|information|know|explain)\b')
+    negative_pattern = re.compile(r'\b(not|no|)\b')
 
     # Check if the input matches any of the patterns
     if greetings_pattern.search(user_input):
         return "Hello! How can I assist you today?"
     elif help_pattern.search(user_input):
         return "I'm here to help. What would you like to know?"
+    elif negative_pattern.search(user_input):
+        return "ok, feel free reach out anytime later.I am just a text away"
     else:
         return ""
 
