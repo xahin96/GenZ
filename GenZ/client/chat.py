@@ -14,10 +14,10 @@ from pinecone import ServerlessSpec
 from django.conf import settings
 import re
 media_path = settings.MEDIA_ROOT
-pc = Pinecone(api_key='')
+pc = Pinecone(api_key='cbce143e-7f60-4ba2-8b50-cb10eb3004a8')
 load_dotenv()
 
-openai.api_key = ""
+openai.api_key = "sk-proj-1yFkH3wOlBhkDY7xwWyyT3BlbkFJXoUpo2iJQbJplPN8665L"
 
 # pinecone_index_name = 'company1'
 

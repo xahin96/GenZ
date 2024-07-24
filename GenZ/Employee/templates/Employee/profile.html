@@ -10,7 +10,17 @@
 
 {% block content %}
 
-<div class="container">
-    <p>This is the profile page of the organization.</p>
+    <h1>{{ organization.name }}'s Profile</h1>
+    <p><strong>Name:</strong> {{ organization.name }}</p>
+    <p><strong>Domain Name:</strong> {{ organization.domain_name }}</p>
+    <p><strong>Website:</strong> {{ organization.website }}</p>
+    <p><strong>City:</strong> {{ organization.city }}</p>
+    <p><strong>Country:</strong> {{ organization.country }}</p>
+    <a href="{% url 'Employee:edit_profile' organization.domain_name %}">Edit Profile</a>
+{#    <form action="{% url 'delete' %}" method="post" style="display:inline;">#}
+{#        {% csrf_token %}#}
+{#        <button type="submit">Delete Profile</button>#}
+{#    </form>#}
+
 
 {% endblock %}

@@ -4,6 +4,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import EmployeeSignupForm, EmployeeLoginForm, UploadFileForm
 from .models import Task
+from .models import *
+from django.shortcuts import render, get_object_or_404
+from .forms import UserProfileForm
 
 
 def signup_view(request):
@@ -66,11 +69,42 @@ def tasklist_view(request):
     employee = request.user.employee
     organization = employee.organization
     tasks = Task.objects.filter(organization=organization)
-    return render(request, 'Employee/tasklist.html', {'tasks': tasks, 'employee': employee, 'organization': organization})
+    return render(request, 'Employee/tasklist.html',
+                  {'tasks': tasks, 'employee': employee, 'organization': organization})
 
 
 def dashboard_view(request):
     return render(request, 'Employee/dashboard.html')
 
-def profile_view(request):
-    return render(request, 'Employee/profile.html')
+
+def profile_view(request, domain_name):
+    organization = get_object_or_404(Organization, domain_name=domain_name)
+
+    context = {
+
+        'organization': organization,
+    }
+    return render(request, 'Employee/profile.html', context)
+
+
+def edit_profile(request, domain_name):
+    organization = get_object_or_404(Organization, domain_name=domain_name)
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=organization)
+        if form.is_valid():
+            organization.save()
+            form.save()
+            return redirect('Employee:profile', domain_name=organization.domain_name)
+    else:
+        form = UserProfileForm(instance=organization)
+
+    return render(request, 'Employee/edit_profile.html', {'form': form})
+
+
+def organization_delete(request, pk):
+    organization = get_object_or_404(Organization, pk=pk)
+    if request.method == 'POST':
+        organization.delete()
+        return redirect('organization_list')
+    return render(request, 'Employee/delete.html', {'organization': organization})
