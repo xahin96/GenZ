@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Employee, UploadedFile
+from .models import Employee, UploadedFile, Organization
 
 
 class EmployeeSignupForm(forms.ModelForm):
@@ -44,3 +44,8 @@ class UploadFileForm(forms.ModelForm):
     class Meta:
         model = UploadedFile
         fields = ['file']
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Organization
+        fields = ['name', 'website', 'city', 'country']
