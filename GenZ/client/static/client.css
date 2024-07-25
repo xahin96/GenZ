@@ -3,7 +3,7 @@
            position: fixed; !important;
        }
         .container-fluid {
-            display: flex;
+            /*display: flex;*/
             padding: 0 !important;
             width: 100%;
         }

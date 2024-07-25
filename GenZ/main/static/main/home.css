@@ -4,11 +4,17 @@ body {
     padding: 0;
     background-size: cover;
 }
+
+.w-75 {
+    min-height: 72vh;
+}
 .home-container{
+    margin: 100px;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
+
 .container-dashboard{
    padding: 1em;
     display: block !important;
@@ -37,9 +43,6 @@ body {
 .cta button {
     padding: 10px 20px;
     font-size: 1em;
-    /*color: #000;*/
-    /*background-color: #fff;*/
-    /*border: none;*/
     cursor: pointer;
 }
 

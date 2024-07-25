@@ -12,44 +12,22 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Cabin", sans-serif;
-  font-size: 14px;
+  font-family: "Roboto Thin", sans-serif;
 }
 
-.container {
-    padding: 10px;
+.container-fluid {
     border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
     flex-wrap: wrap;
     width: 100%;
-  /*justify-content: center;*/
 }
-
-input {
-      padding: 10px 10px !important;
-    font-size: 12px !important;
-    line-height: 10px !important;
-    border-radius: 5px !important;
-    height: auto !important;
-    font-weight: bold !important;
-    color: #000000 !important;
-}
-
-
-label {
-  font-size: 12px;
-  line-height: 25px;
-  font-weight: bold;
-  margin: 1px 0px 2px;
-}
-
 
  .btn-primary {
             background-color: #007bff;
             border: none;
+            color: white;
         }
         .btn-primary:hover {
             background-color: #0056b3;
@@ -64,6 +42,7 @@ label {
 a{
     text-decoration: none !important;
 }
+
 .navbar {
     background-color: #333; /* Dark background color */
     color: white;
@@ -160,7 +139,7 @@ a{
   position: absolute;
   top: 100%;
   background-color: #333;
-  color: #4CAF50;
+  color: #007bff;
   min-width: 150px;
   /*box-shadow: 0 8px 16px rgba(0,0,0,0.2);*/
   /*z-index: 1;*/
@@ -183,7 +162,7 @@ a{
 }
 
 .dropdown-item:hover {
-  background-color: #45a049;
+  background-color: #0056b3;
 }
 
 
@@ -228,7 +207,7 @@ a{
 }
 
 .login-signup button:hover {
-  background-color: #45a049;
+  background-color: #0056b3;
 }
 
 .menu-icon {
@@ -243,7 +222,7 @@ a{
 
 .menu-icon div {
   height: 3px;
-  background-color: #45a049;
+  background-color: #0056b3;
   margin: 2px 0;
 }
 

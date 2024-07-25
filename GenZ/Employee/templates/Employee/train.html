@@ -7,6 +7,7 @@
 {% block extra_css %}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
+
     .custom-file-container {
         border: 2px dashed #63aeff;
         padding: 30px;
@@ -29,10 +30,10 @@
             font-size: 1.4rem;
     }
     .container {
-        padding: 10px;
         width: 100%;
         display: block;
     }
+
     i{
         font-size: 7rem;
         color: #63aeff;
@@ -59,7 +60,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container mt-2">
+<div class="container-fluid mt-2 w-75" style="padding-top: 200px">
     <div class="row">
         <!-- Left Side: Table and Upload Form -->
 
@@ -122,13 +123,6 @@
                 <span class="custom-file-label">You haven't uploaded any documents yet!</span>
             {% endif %}
         </div>
-{#        <!-- Right Side: Train Button -->#}
-{#        <div class="col-md-4 d-flex align-items-start flex-column">#}
-{#            <form action="{% url 'Employee:test_view' %}" method="post" class="mt-4">#}
-{#                {% csrf_token %}#}
-{#                <button type="submit" class="btn btn-info">Train</button>#}
-{#            </form>#}
-{#        </div>#}
     </div>
 </div>
 <script>

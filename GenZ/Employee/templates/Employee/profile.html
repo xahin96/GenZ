@@ -5,18 +5,97 @@
 {% load static %}
 
 {% block extra_css %}
-
+    <link rel="stylesheet" type="text/css" href="{% static 'Employee/profile.css' %}">
 {% endblock %}
 
 {% block content %}
+<div class="profile-page-container container-fluid">
+    <div class="row">
 
-    <h1>{{ organization.name }}'s Profile</h1>
-    <p><strong>Name:</strong> {{ organization.name }}</p>
-    <p><strong>Domain Name:</strong> {{ organization.domain_name }}</p>
-    <p><strong>Website:</strong> {{ organization.website }}</p>
-    <p><strong>City:</strong> {{ organization.city }}</p>
-    <p><strong>Country:</strong> {{ organization.country }}</p>
-    <a href="{% url 'Employee:edit_profile' organization.domain_name %}">Edit Profile</a>
-    <a href="{% url 'Employee:tasklist' %}">Tasks</a>
+{#        menu#}
+        <div class="col-sm-4">
+            <div class="profile-menu">
+                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:profile' user.employee.organization.domain_name %}">Profile</a></p>
+                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:edit_profile' user.employee.organization.domain_name %}">Edit Profile</a></p>
+                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:dashboard' %}">Statistics</a></p>
+                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:train' %}">Train Your Bot</a></p>
+                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:tasklist' %}">Tasks</a></p>
+                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:logout' %}">Log Out</a></p>
+            </div>
+        </div>
+
+{#        profile#}
+        <div class="col-sm-8">
+                <div class="text-center my-4">
+                    <p class="fs-4">{{ organization.name }}</p>
+                    <p class="text-introduction fw-light">Info about your organization across GenZ</p>
+                </div>
+
+                <div class="profile-info">
+                    <p class="fs-2">Your organization info in GenZ services</p>
+                    <p class="text-introduction fw-light">Organization info and options to manage it. You can make changes for some of this info, like contact details, so others can reach you easily.</p>
+
+                    <div class="profile-section border border-light-subtle">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="fs-4 p-2">Basic info</p>
+                        </div>
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td class="text-title fw-light">Title: </td>
+                                    <td class="text-value fw-normal">{{ organization.name }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title fw-light p-2">Domain Name: </td>
+                                    <td class="text-value fw-normal">{{ organization.domain_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title fw-light p-2">Website: </td>
+                                    <td class="text-value fw-normal">{{ organization.website }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title fw-light p-2">Address: </td>
+                                    <td class="text-value fw-normal">address</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title fw-light p-2">City: </td>
+                                    <td class="text-value fw-normal">{{ organization.city }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title fw-light p-2">Country: </td>
+                                    <td class="text-value fw-normal">{{ organization.country }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="profile-section border border-light-subtle">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="fs-4 p-2">Contact info</p>
+                        </div>
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td class="text-title fw-light">Contact: </td>
+                                    <td class="text-value fw-normal">contact_name</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title fw-light">Email: </td>
+                                    <td class="text-value fw-normal">email</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title fw-light">Phone: </td>
+                                    <td class="text-value fw-normal">phone</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary">
+                    <a class="text-decoration-none" href="{% url 'Employee:edit_profile' organization.domain_name %}">Edit Profile</a>
+                </button>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

@@ -5,16 +5,59 @@
 {% load static %}
 
 {% block extra_css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'Employee/profile.css' %}">
 {% endblock %}
 
 {% block content %}
+<div class="profile-page-container container-fluid">
+    <div class="row">
 
-        <h1>Edit Profile for {{ organization.name }}</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save changes</button>
-    </form>
+{#        menu#}
+        <div class="col-sm-4">
+            <div class="profile-menu">
+                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:profile' user.employee.organization.domain_name %}">Profile</a></p>
+                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:edit_profile' user.employee.organization.domain_name %}">Edit Profile</a></p>
+                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:dashboard' %}">Statistics</a></p>
+                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:train' %}">Train Your Bot</a></p>
+                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:tasklist' %}">Tasks</a></p>
+                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:logout' %}">Log Out</a></p>
+            </div>
+        </div>
 
+{#        profile#}
+        <div class="col-sm-8">
+                <div class="text-center my-4">
+                    <p class="fs-4">{{ organization.name }}</p>
+                    <p class="text-introduction fw-light">Edit info about your organization across GenZ</p>
+                </div>
+
+                <div class="profile-info">
+                    <p class="fs-2">Your organization info in GenZ services</p>
+                    <p class="text-introduction fw-light">Organization info and options to manage it. You can make changes for some of this info, like contact details, so others can reach you easily.</p>
+
+                    <div class="edit-profile-container">
+                        <form method="post">
+                            {% csrf_token %}
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            {{ form.as_p }}
+
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </form>
+                    </div>
+
+
+                </div>
+        </div>
+    </div>
+</div>
+</div>
 
 {% endblock %}

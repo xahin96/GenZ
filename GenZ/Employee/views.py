@@ -102,6 +102,7 @@ def profile_view(request, domain_name):
 
 def edit_profile(request, domain_name):
     organization = get_object_or_404(Organization, domain_name=domain_name)
+    print(organization.name)
 
     if request.method == 'POST':
         form = UserProfileForm(request.POST, instance=organization)
@@ -112,7 +113,7 @@ def edit_profile(request, domain_name):
     else:
         form = UserProfileForm(instance=organization)
 
-    return render(request, 'Employee/edit_profile.html', {'form': form})
+    return render(request, 'Employee/edit_profile.html', {'form': form, 'organization': organization})
 
 
 def organization_delete(request, pk):
