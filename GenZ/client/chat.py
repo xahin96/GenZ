@@ -138,8 +138,8 @@ def get_answer_from_openai(pinecone_index_name,question):
                     'content': prompt
                 }]
             )
-            if completion.choices[0].message.content == "Sorry, I cannot answer that questoion. Is there anything else that I can help you with ?":
-                return " Is there anything else that you want to know?"
+            if completion.choices[0].message.content == "Sorry, I cannot answer that question. Is there anything else that I can help you with ?":
+                return "I cannot answer that question, Is there anything else that you want to know?"
             else:
                 return completion.choices[0].message.content + " Is there anything else that you want to know?"
         else:
@@ -154,14 +154,15 @@ def generic_response(user_input):
 
     # Define patterns for various generic inputs
     greetings_pattern = re.compile(r'\b(hi|hello|hey|good morning|good afternoon|good evening|greetings)\b')
-    help_pattern = re.compile(r'\b(help|assist|support|question|info|information|know|explain)\b')
-    negative_pattern = re.compile(r'\b(not|no|)\b')
+    # help_pattern = re.compile(r'\b(help|assist|support|question|info|information|know|explain)\b')
+    negative_pattern = re.compile(r'\b(not|no|none|nope|nah|negative|never|nothing|nuh-uh|don\'t need|don\'t want|don\'t think so|no thank you|no thanks)\b', re.IGNORECASE)
+
 
     # Check if the input matches any of the patterns
     if greetings_pattern.search(user_input):
         return "Hello! How can I assist you today?"
-    elif help_pattern.search(user_input):
-        return "I'm here to help. What would you like to know?"
+    # elif help_pattern.search(user_input):
+    #     return "I'm here to help. What would you like to know?"
     elif negative_pattern.search(user_input):
         return "ok, feel free reach out anytime later.I am just a text away"
     else:
@@ -169,7 +170,7 @@ def generic_response(user_input):
 
 
 def create_prompt(question, document_content):
-    return 'You are given a document and a question. Your task is to answer the question based on the document. If there is no information related to the question in the document just say "Sorry, I cannot answer that question. Is there anything else that I can help you with ?"\n\n' \
+    return 'You are given a document and a question. Your task is to answer the question based on the document, try to give relevant answer from the given document. If there is no information related to the question in the document say "Sorry, I cannot answer that question. Is there anything else that I can help you with ?". If you found an answer do not mention "based on the document" in the response, give the answer directly"\n\n' \
            'Document:\n\n' \
            f'{document_content}\n\n' \
            f'Question: {question}'

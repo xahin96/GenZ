@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from .forms import EmployeeSignupForm, EmployeeLoginForm, UploadFileForm
 from .models import Task, Employee, UploadedFile, Organization
-from .tasks import long_running_task
+from .tasks import long_running_task, train_task, untrain_task
 from .chat import *
 
 import os
@@ -96,7 +96,7 @@ def dashboard_view(request):
 def profile_view(request):
     return render(request, 'Employee/profile.html')
 
-
+@login_required
 def fillIndex_view(request):
     user = request.user
     print(user)
@@ -106,7 +106,8 @@ def fillIndex_view(request):
         print('here')
         messages.error(request, "Employee profile not found.")
         return redirect('Employee:train')  # Redirect to an appropriate page if the employee profile is not found
-
+    organization = employee.organization
+    task_title = "Train task"
     company_name = Employee.objects.get(user=user).organization.name
     print(company_name)
     index_status = create_pinecone_index(company_name)
@@ -121,7 +122,8 @@ def fillIndex_view(request):
         print(file_paths)
         documents = load_documents(company_name,file_paths)
         # print(documents)
-        fill_pinecone_index(company_name, documents)
+        train_task(task_title,organization.id,employee.user.id,company_name,documents)
+        # fill_pinecone_index(company_name, documents)
 
     return redirect('Employee:train')
 
@@ -144,3 +146,36 @@ def test_view(request):
     print('ok')
     messages.success(request, "Train button clicked and task is running in the background!")
     return redirect('Employee:train')  # Redirect back to the train view or any other appropriate page
+
+
+def delete_index_view(request):
+    user = request.user
+    print(user)
+    try:
+        employee = Employee.objects.get(user=user)
+    except Employee.DoesNotExist:
+        print('here')
+        messages.error(request, "Employee profile not found.")
+        return redirect('Employee:train')  # Redirect to an appropriate page if the employee profile is not found
+
+    company_name = Employee.objects.get(user=user).organization.name
+    delete_index(company_name)
+    return redirect('Employee:train')
+
+
+def clear_index_view(request):
+    user = request.user
+    print(user)
+    try:
+        employee = Employee.objects.get(user=user)
+    except Employee.DoesNotExist:
+        print('here')
+        messages.error(request, "Employee profile not found.")
+        return redirect('Employee:train')  # Redirect to an appropriate page if the employee profile is not found
+
+    company_name = Employee.objects.get(user=user).organization.name
+    task_title = "Untrain task"
+    organization = employee.organization
+    untrain_task(task_title, organization.id, employee.user.id,company_name)
+    print("Hello")
+    return redirect('Employee:train')
