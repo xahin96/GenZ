@@ -5,62 +5,11 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<style>
-
-    .custom-file-container {
-        border: 2px dashed #63aeff;
-        padding: 30px;
-        text-align: center;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    .custom-file-container:hover {
-        background-color: #f8f9fa;
-    }
-    .custom-file-label::after {
-        content: "Browse File";
-        display: none;
-    }
-    .custom-file-label {
-        position: relative !important;
-        width: 100%;
-        background: transparent;
-        border: none;
-            font-size: 1.4rem;
-    }
-    .container {
-        width: 100%;
-        display: block;
-    }
-
-    i{
-        font-size: 7rem;
-        color: #63aeff;
-    }
-    .table .thead-dark th {
-    color: #fff;
-    background-color: #63aeff;
-    border-color: #63aeff;
-    }
-    .test-bot{
-            float: right;
-            padding: 0.4rem;
-            border: 1px solid #63aeff;
-            border-radius: 4px;
-    }
-    .upload-files-header{
-            border-bottom: 3px solid #63aeff;
-    padding: 0px 0px 5px 0px;
-    margin-top: 1.2rem;
-    color: gray;
-    }
-
-</style>
+    <link rel="stylesheet" type="text/css" href="{% static 'Employee/train.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid mt-2 w-75" style="padding-top: 200px">
+<div class="train-container">
     <div class="row">
         <!-- Left Side: Table and Upload Form -->
 

@@ -22,6 +22,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
+    padding: 0;
 }
 
  .btn-primary {
@@ -135,12 +136,11 @@ a{
 }
 
 .nav-dropdown .dropdown-menu {
+    line-height: 15px;
   display: none;
   position: absolute;
   top: 100%;
-  background-color: #333;
-  color: #007bff;
-  min-width: 150px;
+  min-width: 170px;
   /*box-shadow: 0 8px 16px rgba(0,0,0,0.2);*/
   /*z-index: 1;*/
   margin-right: 30px;
@@ -158,11 +158,10 @@ a{
   padding: 8px 8px;
   text-decoration: none;
   display: block;
-  color: white;
 }
 
 .dropdown-item:hover {
-  background-color: #0056b3;
+  color: #343a40;
 }
 
 
