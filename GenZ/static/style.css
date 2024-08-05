@@ -92,6 +92,7 @@ a{
 
 .employee-list {
   display: flex;
+    align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -164,54 +165,8 @@ a{
   color: #343a40;
 }
 
-
-.login-register a {
-    margin-left: 10px;
-}
-
-.login-signup button {
-  background-color: aliceblue;
-  color: black;
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-left: 10px;
-  cursor: pointer;
-  border-radius: 12px;
-    }
-
-
-.login-register button {
-    background-color: #007BFF; /* Blue background color */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.login-register button i {
-    margin-right: 8px; /* Space between icon and text */
-}
-
-.login-signup button:hover {
-  background-color: #0056b3;
-}
-
 .menu-icon {
   display: flex;
-  color: cornsilk;
   flex-direction: column;
   justify-content: space-between;
   width: 20px;
@@ -221,7 +176,7 @@ a{
 
 .menu-icon div {
   height: 3px;
-  background-color: #0056b3;
+  background-color: white;
   margin: 2px 0;
 }
 
@@ -238,24 +193,22 @@ a{
   font-size: 18px;
   color: #666;
     }
-.login-register button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
 
 .container-signup-login {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-        }
-        .container-signup-login a {
-            text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
 
-            color:white;
-            font-size: 2rem;
-            transition: color 0.3s;
-        }
-        .container-signup-login a:hover {
-            color: white;
-        }
+.container-signup-login a {
+    text-decoration: none;
+    color:white;
+    font-size: 1.3rem;
+    border-color: white;
+    transition: color 0.3s;
+}
+
+.container-signup-login a:hover {
+    color: white;
+}
