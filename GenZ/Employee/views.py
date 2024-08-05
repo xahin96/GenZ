@@ -1,5 +1,5 @@
 import time
-
+from client.models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -11,8 +11,9 @@ from django.shortcuts import render, get_object_or_404
 from .forms import UserProfileForm
 
 from .models import Task, Employee, UploadedFile, Organization
-from .tasks import long_running_task
+from .tasks import long_running_task, train_task, untrain_task
 from .chat import *
+
 import os
 
 def signup_view(request):
@@ -87,7 +88,18 @@ def tasklist_view(request):
 
 
 def dashboard_view(request):
-    return render(request, 'Employee/dashboard.html')
+    no_of_organizations = Organization.objects.all().count()
+    no_of_tasks = Task.objects.all().count()
+    no_of_users = Employee.objects.all().count()
+    no_of_questions = Question.objects.all().count()
+    no_of_uploaded_files = UploadedFile.objects.all().count()
+    no_of_trained_files = UploadedFile.objects.filter(trained=True).count()
+
+    context = {'no_of_organizations': no_of_organizations, 'no_of_tasks': no_of_tasks,
+               'no_of_users': no_of_users, 'no_of_questions': no_of_questions,
+               'no_of_uploaded_files': no_of_uploaded_files, 'no_of_trained_files': no_of_trained_files}
+
+    return render(request, 'Employee/dashboard.html',context)
 
 
 def profile_view(request, domain_name):
@@ -123,7 +135,7 @@ def organization_delete(request, pk):
         return redirect('organization_list')
     return render(request, 'Employee/delete.html', {'organization': organization})
 
-
+@login_required
 def fillIndex_view(request):
     user = request.user
     print(user)
@@ -133,24 +145,17 @@ def fillIndex_view(request):
         print('here')
         messages.error(request, "Employee profile not found.")
         return redirect('Employee:train')  # Redirect to an appropriate page if the employee profile is not found
-
+    organization = employee.organization
+    task_title = "Train task"
     company_name = Employee.objects.get(user=user).organization.name
     print(company_name)
     index_status = create_pinecone_index(company_name)
     if not index_status:
-        files = UploadedFile.objects.filter(organization=Organization.objects.get(name=company_name))
-        file_paths = []
-        for file in files:
-            if not file.trained:
-                file_paths.append(os.path.splitext(os.path.basename(file.file.name))[0])
-                file.trained = True
-                file.save()
-        print(file_paths)
-        documents = load_documents(company_name,file_paths)
         # print(documents)
-        fill_pinecone_index(company_name, documents)
+        train_task.delay(task_title,organization.id,employee.user.id,company_name)
+        # fill_pinecone_index(company_name, documents)
 
-    return redirect('Employee:train')
+    return redirect('Employee:tasklist')
 
 
 @login_required
@@ -171,3 +176,36 @@ def test_view(request):
     print('ok')
     messages.success(request, "Train button clicked and task is running in the background!")
     return redirect('Employee:train')  # Redirect back to the train view or any other appropriate page
+
+
+def delete_index_view(request):
+    user = request.user
+    print(user)
+    try:
+        employee = Employee.objects.get(user=user)
+    except Employee.DoesNotExist:
+        print('here')
+        messages.error(request, "Employee profile not found.")
+        return redirect('Employee:train')  # Redirect to an appropriate page if the employee profile is not found
+
+    company_name = Employee.objects.get(user=user).organization.name
+    delete_index(company_name)
+    return redirect('Employee:train')
+
+
+def clear_index_view(request):
+    user = request.user
+    print(user)
+    try:
+        employee = Employee.objects.get(user=user)
+    except Employee.DoesNotExist:
+        print('here')
+        messages.error(request, "Employee profile not found.")
+        return redirect('Employee:train')  # Redirect to an appropriate page if the employee profile is not found
+
+    company_name = Employee.objects.get(user=user).organization.name
+    task_title = "Untrain task"
+    organization = employee.organization
+    untrain_task(task_title, organization.id, employee.user.id,company_name)
+    print("Hello")
+    return redirect('Employee:tasklist')

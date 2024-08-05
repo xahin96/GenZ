@@ -15,4 +15,6 @@ urlpatterns = [
     path('profile/<str:domain_name>/edit/', edit_profile, name='edit_profile'),
     path("fillIndex/",fillIndex_view,name="fillIndex"),
     path('test-view/', test_view, name='test_view'),
+    path('delete-index/',delete_index_view,name='delete_index'),
+    path('clear-index/',clear_index_view,name='clear_index_view'),
 ]

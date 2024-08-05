@@ -19,7 +19,7 @@
                 <div class="custom-file-container" id="file-drop-zone">
 
                     <input type="file" name="file" class="custom-file-input" id="fileUpload" style="display: none;">
-                    <label class="custom-file-label" for="fileUpload">Choose a file or drag & drop it here<br><small>JPEG, PNG, PDF, and MP4 formats, up to 50MB</small></label>
+                    <label class="custom-file-label" for="fileUpload">Choose a file or drag & drop it here<br><small>Please upload a .pdf file</small></label>
                      <div style="text-align: center; margin-top: 10px;">
                         <i class="bi bi-cloud-arrow-up-fill"></i>
                     </div>
@@ -67,6 +67,10 @@
                 <div class="text-right">
                     <button type="submit" class="btn btn-primary mt-3">Train</button>
                 </div>
+            </form>
+            <form action="{% url 'Employee:clear_index_view' %}" method="post" class="text-right">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-danger mt-3">UnTrain</button>
             </form>
             {% else %}
                 <span class="custom-file-label">You haven't uploaded any documents yet!</span>
