@@ -146,3 +146,11 @@ def create_prompt(question, document_content):
            'Document:\n\n' \
            f'{document_content}\n\n' \
            f'Question: {question}'
+
+
+def delete_index(company_name):
+    pc.delete_index(company_name)
+
+def clear_index(company_name):
+    index = pc.Index(company_name)
+    index.delete(delete_all=True)

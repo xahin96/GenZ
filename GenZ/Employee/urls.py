@@ -13,4 +13,6 @@ urlpatterns = [
     path("train/", train_view, name="train"),
     path("fillIndex/",fillIndex_view,name="fillIndex"),
     path('test-view/', test_view, name='test_view'),
+    path('delete-index/',delete_index_view,name='delete_index'),
+    path('clear-index/',clear_index_view,name='clear_index_view'),
 ]
