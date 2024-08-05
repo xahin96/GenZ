@@ -112,20 +112,11 @@ def fillIndex_view(request):
     print(company_name)
     index_status = create_pinecone_index(company_name)
     if not index_status:
-        files = UploadedFile.objects.filter(organization=Organization.objects.get(name=company_name))
-        file_paths = []
-        for file in files:
-            if not file.trained:
-                file_paths.append(os.path.splitext(os.path.basename(file.file.name))[0])
-                file.trained = True
-                file.save()
-        print(file_paths)
-        documents = load_documents(company_name,file_paths)
         # print(documents)
-        train_task(task_title,organization.id,employee.user.id,company_name,documents)
+        train_task.delay(task_title,organization.id,employee.user.id,company_name)
         # fill_pinecone_index(company_name, documents)
 
-    return redirect('Employee:train')
+    return redirect('Employee:tasklist')
 
 
 @login_required
@@ -178,4 +169,4 @@ def clear_index_view(request):
     organization = employee.organization
     untrain_task(task_title, organization.id, employee.user.id,company_name)
     print("Hello")
-    return redirect('Employee:train')
+    return redirect('Employee:tasklist')
