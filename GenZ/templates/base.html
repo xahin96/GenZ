@@ -25,6 +25,157 @@
 
     {% endblock %}
 
+    <style>
+        /* General Navbar Styling */
+.navbar {
+  background-color: #007bff9c; /* Semi-transparent blue */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  padding: 0.5rem 1rem; /* Reduced padding for a compact look */
+}
+
+/* Branding */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff; /* White text color */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Employee Container */
+.container-employee {
+  display: flex;
+  align-items: center;
+}
+
+/* Employee List */
+.employee-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.employee-username {
+  color: #fff; /* White text color */
+  font-weight: bold;
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+.employee-username:hover {
+  color: #ffc107; /* Light yellow on hover */
+}
+
+/* Dropdown */
+.nav-dropdown {
+  position: relative;
+}
+
+.menu-icon {
+  width: 25px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.menu-icon div {
+  background-color: #fff;
+  height: 3px;
+  border-radius: 1px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-icon:hover div {
+  background-color: #ffc107;
+}
+
+.dropdown-menu {
+  background-color: #007bff;
+  border: none;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  margin-top: 0.5rem;
+}
+
+.dropdown-item {
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.dropdown-divider {
+  border-top: 1px solid #ddd;
+}
+
+/* Signup/Login Buttons */
+.container-signup-login .btn {
+  color: #fff;
+  border: 1px solid #fff;
+  margin-left: 0.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container-signup-login .btn:hover {
+  background-color: #fff;
+  color: #007bff;
+}
+
+.container-signup-login .btn i {
+  margin-right: 0.5rem;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #007bff; /* Dark blue background */
+  color: #f8f9fa; /* Light text color */
+}
+
+.footer-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #f8f9fa;
+}
+
+.footer-text {
+  color: #e1e1e1; /* Light grey for text */
+}
+
+.footer-link,
+.footer-icon-link {
+  color: #f8f9fa;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover,
+.footer-icon-link:hover {
+  color: #cce4ff; /* Lighter blue for hover */
+}
+
+.footer .bi {
+  font-size: 1.5rem;
+  color: #f8f9fa; /* Icon color */
+}
+
+.footer .bi:hover {
+  color: #cce4ff; /* Hover color */
+}
+
+.footer hr {
+  border-top: 1px solid #f8f9fa; /* Divider line */
+}
+
+.nav-link {
+  padding: 0.2rem 0.5rem; /* Adjust padding for a cleaner look */
+}
+
+    </style>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -76,13 +227,63 @@
 </div>
 
 
-<footer class="bg-light py-3 mt-auto" style="font-size: small">
-    <div class="text-center">
-        <nav class="d-flex justify-content-center">
-            <span class="text-muted">&copy; 2024 GenZ. All rights reserved.</span>
+<!--<footer class="bg-light py-3 mt-auto" style="font-size: small">-->
+<!--    <div class="text-center">-->
+<!--        <nav class="d-flex justify-content-center">-->
+<!--            <span class="text-muted">&copy; 2024 GenZ. All rights reserved.</span>-->
+<!--        </nav>-->
+<!--    </div>-->
+<!--</footer>-->
+<!--<footer class="bg-light py-3 mt-auto" style="font-size: small">-->
+<!--    <div class="text-center">-->
+<!--        <nav class="d-flex justify-content-center">-->
+<!--            <span class="text-muted">&copy; 2024 GenZ. All rights reserved.</span>-->
+<!--        </nav>-->
+<!--    </div>-->
+<!--</footer>-->
+<footer class="footer py-4 mt-auto">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 text-center text-md-left mb-3 mb-md-0">
+        <h5 class="footer-title mb-2">About GenZ</h5>
+        <p class="footer-text">
+          GenZ is your go-to platform for getting all your questions answered. Stay curious and explore the future with us!
+        </p>
+      </div>
+      <div class="col-md-4 text-center mb-3 mb-md-0">
+        <h5 class="footer-title mb-2">Quick Links</h5>
+        <nav class="nav justify-content-center">
+          <a class="nav-link footer-link" href="#">Home</a>
+          <a class="nav-link footer-link" href="#">About</a>
+          <a class="nav-link footer-link" href="#">Services</a>
+          <a class="nav-link footer-link" href="#">Contact</a>
         </nav>
+      </div>
+      <div class="col-md-4 text-center text-md-right">
+        <h5 class="footer-title mb-2">Follow Us</h5>
+        <nav class="nav justify-content-center justify-content-md-end">
+          <a class="nav-link footer-icon-link" href="#">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a class="nav-link footer-icon-link" href="#">
+            <i class="bi bi-twitter"></i>
+          </a>
+          <a class="nav-link footer-icon-link" href="#">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a class="nav-link footer-icon-link" href="#">
+            <i class="bi bi-linkedin"></i>
+          </a>
+        </nav>
+      </div>
     </div>
+    <hr>
+    <div class="text-center footer-text">
+      <p class="mb-0">&copy; 2024 GenZ. All rights reserved.</p>
+    </div>
+  </div>
 </footer>
+
 
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
