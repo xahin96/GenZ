@@ -42,7 +42,7 @@
                         <table class="table table-hover">
                             <tbody>
                                 <tr>
-                                    <td class="text-title fw-light">Title: </td>
+                                    <td class="text-title fw-light p-2">Title: </td>
                                     <td class="text-value fw-normal">{{ organization.name }}</td>
                                 </tr>
                                 <tr>
@@ -53,13 +53,54 @@
                                     <td class="text-title fw-light p-2">Website: </td>
                                     <td class="text-value fw-normal">{{ organization.website }}</td>
                                 </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="profile-section border border-light-subtle">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="fs-4 p-2">Contact info</p>
+                        </div>
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td class="text-title fw-light p-2">Contact: </td>
+                                    <td class="text-value fw-normal">{{ organization.contact_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title fw-light p-2">Email: </td>
+                                    <td class="text-value fw-normal">{{ organization.contact_email }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title fw-light p-2">Phone: </td>
+                                    <td class="text-value fw-normal">{{ organization.contact_phone }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="profile-section border border-light-subtle">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="fs-4 p-2">Addresses</p>
+                        </div>
+                        <table class="table table-hover">
+                            <tbody>
                                 <tr>
                                     <td class="text-title fw-light p-2">Address: </td>
-                                    <td class="text-value fw-normal">address</td>
+                                    <td class="text-value fw-normal">{{ organization.address }}</td>
                                 </tr>
                                 <tr>
                                     <td class="text-title fw-light p-2">City: </td>
                                     <td class="text-value fw-normal">{{ organization.city }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title fw-light p-2">Province/State: </td>
+                                    <td class="text-value fw-normal">{{ organization.province }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title fw-light p-2">Postal Code: </td>
+                                    <td class="text-value fw-normal">{{ organization.postal_code }}</td>
                                 </tr>
                                 <tr>
                                     <td class="text-title fw-light p-2">Country: </td>
@@ -69,27 +110,6 @@
                         </table>
                     </div>
 
-                    <div class="profile-section border border-light-subtle">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="fs-4 p-2">Contact info</p>
-                        </div>
-                        <table class="table table-hover">
-                            <tbody>
-                                <tr>
-                                    <td class="text-title fw-light">Contact: </td>
-                                    <td class="text-value fw-normal">contact_name</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-title fw-light">Email: </td>
-                                    <td class="text-value fw-normal">email</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-title fw-light">Phone: </td>
-                                    <td class="text-value fw-normal">phone</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
                 <button type="button" class="btn btn-primary">
                     <a class="text-decoration-none" href="{% url 'Employee:edit_profile' organization.domain_name %}">Edit Profile</a>
