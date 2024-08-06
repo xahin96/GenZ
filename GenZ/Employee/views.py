@@ -106,7 +106,6 @@ def profile_view(request, domain_name):
     organization = get_object_or_404(Organization, domain_name=domain_name)
 
     context = {
-
         'organization': organization,
     }
     return render(request, 'Employee/profile.html', context)
