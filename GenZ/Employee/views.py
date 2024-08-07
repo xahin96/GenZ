@@ -135,6 +135,7 @@ def organization_delete(request, pk):
         return redirect('organization_list')
     return render(request, 'Employee/delete.html', {'organization': organization})
 
+
 @login_required
 def fillIndex_view(request):
     user = request.user
@@ -206,6 +207,6 @@ def clear_index_view(request):
     company_name = Employee.objects.get(user=user).organization.name
     task_title = "Untrain task"
     organization = employee.organization
-    untrain_task(task_title, organization.id, employee.user.id,company_name)
+    untrain_task.delay(task_title, organization.id, employee.user.id,company_name)
     print("Hello")
     return redirect('Employee:tasklist')
