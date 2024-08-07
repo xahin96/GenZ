@@ -13,29 +13,27 @@
     <div class="row">
 
 {#        menu#}
-        <div class="col-sm-4">
-            <div class="profile-menu">
-                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:profile' user.employee.organization.domain_name %}">Profile</a></p>
-                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:edit_profile' user.employee.organization.domain_name %}">Edit Profile</a></p>
-                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:dashboard' %}">Statistics</a></p>
-                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:train' %}">Train Your Bot</a></p>
-                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:tasklist' %}">Tasks</a></p>
-                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:logout' %}">Log Out</a></p>
+        <div class="col-sm-3">
+            <div id="list-example" class="profile-menu list-group">
+                <a class="list-group-item list-group-item-action" href="#list-item-1">Basic Info</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-2">Contact Info</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-3">Addresses</a>
+                <a class="list-group-item list-group-item-action" href="{% url 'Employee:edit_profile' organization.domain_name %}">Edit Profile</a>
             </div>
         </div>
 
 {#        profile#}
-        <div class="col-sm-8">
+        <div class="col-sm-9">
                 <div class="text-center my-4">
                     <p class="fs-4">{{ organization.name }}</p>
                     <p class="text-introduction fw-light">Info about your organization across GenZ</p>
                 </div>
 
-                <div class="profile-info">
+                <div class="profile-info scrollspy-example" data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" tabindex="0">
                     <p class="fs-2">Your organization info in GenZ services</p>
                     <p class="text-introduction fw-light">Organization info and options to manage it. You can make changes for some of this info, like contact details, so others can reach you easily.</p>
 
-                    <div class="profile-section border border-light-subtle">
+                    <div id="list-item-1" class="profile-section border border-light-subtle">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="fs-4 p-2">Basic info</p>
                         </div>
@@ -58,7 +56,7 @@
                     </div>
 
 
-                    <div class="profile-section border border-light-subtle">
+                    <div id="list-item-2" class="profile-section border border-light-subtle">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="fs-4 p-2">Contact info</p>
                         </div>
@@ -80,7 +78,7 @@
                         </table>
                     </div>
 
-                    <div class="profile-section border border-light-subtle">
+                    <div id="list-item-3" class="profile-section border border-light-subtle">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="fs-4 p-2">Addresses</p>
                         </div>
@@ -111,6 +109,7 @@
                     </div>
 
                 </div>
+
                 <button type="button" class="btn btn-primary">
                     <a class="text-decoration-none" href="{% url 'Employee:edit_profile' organization.domain_name %}">Edit Profile</a>
                 </button>
