@@ -1,10 +1,64 @@
 {% extends 'base.html' %}
-
 {% block title %}Chat with Bot - GenZ{% endblock %}
 {% load static %}
-
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'client.css' %}">
+<style>
+    /* Add this to your client.css */
+
+.chat-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 20%;
+    background-color: #f8f9fa;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Remove fixed positioning */
+    position: relative;
+}
+
+.content {
+    width: 80%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content-wrapper {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.form-wrapper {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.message-input {
+    display: flex;
+    align-items: center;
+}
+
+.message-input textarea {
+    flex-grow: 1;
+    resize: none;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    position: relative;
+}
+
+</style>
 {% endblock %}
 
 {% block content %}
@@ -58,8 +112,6 @@ input.addEventListener("keypress", function(event) {
     document.getElementById("myBtn").click();
   }
 });
-
 </script>
 
 {% endblock %}
-

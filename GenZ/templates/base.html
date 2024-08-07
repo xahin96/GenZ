@@ -181,47 +181,71 @@
 
 <body class="d-flex flex-column min-vh-100">
 <!-- Navbar -->
-<nav class="navbar navbar-light fixed-top" style="background-color:#007bff9c;">
+<!--<nav class="navbar navbar-light fixed-top" style="background-color:#007bff9c;">-->
+<!--    <div class="container-fluid">-->
+
+<!--    <a class="navbar-brand" href="{% url 'main:home' %}">GenZ</a>-->
+
+<!--    {% if user.is_authenticated %}-->
+<!--        <div class="container-employee">-->
+<!--            <ul class="employee-list">-->
+<!--                <li>-->
+<!--                    <a class="employee-username" href="{% url 'Employee:dashboard' %}">Hello, {{ user.username }}!</a>-->
+<!--                </li>-->
+<!--                <li class="nav-dropdown">-->
+<!--                    <div class="menu-icon">-->
+<!--                        <div></div>-->
+<!--                        <div></div>-->
+<!--                        <div></div>-->
+<!--                    </div>-->
+<!--                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                        <a class="dropdown-item" href="{% url 'Employee:dashboard' %}">Statistics</a>-->
+<!--                        <a class="dropdown-item" href="{% url 'Employee:train' %}">Train Your Bot</a>-->
+<!--                        <a class="dropdown-item" href="{% url 'Employee:profile' user.employee.organization.domain_name %}">Profile</a>-->
+<!--                        <a class="dropdown-item" href="{% url 'Employee:tasklist' %}">Tasks</a>-->
+<!--                        <hr class="dropdown-divider">-->
+<!--                        <a class="dropdown-item" href="{% url 'Employee:logout' %}">Log Out</a>-->
+<!--                    </div>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    {% else %}-->
+<!--       <div class="container-signup-login">-->
+<!--        <a href="{% url 'Employee:signup' %}" class="btn btn-outline-primary d-flex align-items-center">-->
+<!--            <i class="bi bi-person-plus me-2"></i>-->
+<!--        </a>-->
+<!--        <a href="{% url 'Employee:login' %}" class="btn btn-outline-primary d-flex align-items-center">-->
+<!--            <i class="bi bi-box-arrow-in-right me-2"></i>-->
+<!--        </a>-->
+<!--    </div>-->
+<!--    {% endif %}-->
+<!--    </div>-->
+<!--</nav>-->
+
+<nav class="navbar navbar-light fixed-top">
     <div class="container-fluid">
-
-    <a class="navbar-brand" href="{% url 'main:home' %}">GenZ</a>
-
-    {% if user.is_authenticated %}
-        <div class="container-employee">
-            <ul class="employee-list">
-                <li>
-                    <a class="employee-username" href="{% url 'Employee:dashboard' %}">Hello, {{ user.username }}!</a>
-                </li>
-                <li class="nav-dropdown">
-                    <div class="menu-icon">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'Employee:dashboard' %}">Statistics</a>
-                        <a class="dropdown-item" href="{% url 'Employee:train' %}">Train Your Bot</a>
-                        <a class="dropdown-item" href="{% url 'Employee:profile' user.employee.organization.domain_name %}">Profile</a>
-                        <a class="dropdown-item" href="{% url 'Employee:tasklist' %}">Tasks</a>
-                        <hr class="dropdown-divider">
-                        <a class="dropdown-item" href="{% url 'Employee:logout' %}">Log Out</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    {% else %}
-       <div class="container-signup-login">
-        <a href="{% url 'Employee:signup' %}" class="btn btn-outline-primary d-flex align-items-center">
-            <i class="bi bi-person-plus me-2"></i>
-        </a>
-        <a href="{% url 'Employee:login' %}" class="btn btn-outline-primary d-flex align-items-center">
-            <i class="bi bi-box-arrow-in-right me-2"></i>
-        </a>
-    </div>
-    {% endif %}
+        <a class="navbar-brand" href="{% url 'main:home' %}">GenZ</a>
+        {% if user.is_authenticated %}
+            <div class="container-employee d-flex align-items-center">
+                <span class="employee-username">Hello, {{ user.username }}!</span>
+                <a class="nav-link" href="{% url 'Employee:dashboard' %}">Statistics</a>
+                <a class="nav-link" href="{% url 'Employee:train' %}">Train Your Bot</a>
+                <a class="nav-link" href="{% url 'Employee:profile' user.employee.organization.domain_name %}">Profile</a>
+                <a class="nav-link" href="{% url 'Employee:tasklist' %}">Tasks</a>
+                <a class="nav-link" href="{% url 'Employee:logout' %}">Log Out</a>
+            </div>
+        {% else %}
+            <div class="container-signup-login">
+                <a href="{% url 'Employee:signup' %}" class="btn btn-outline-primary d-flex align-items-center">
+                    <i class="bi bi-person-plus me-2"></i> Sign Up
+                </a>
+                <a href="{% url 'Employee:login' %}" class="btn btn-outline-primary d-flex align-items-center">
+                    <i class="bi bi-box-arrow-in-right me-2"></i> Log In
+                </a>
+            </div>
+        {% endif %}
     </div>
 </nav>
-
 <div class="container-fluid">
     {% block content %}
     {% endblock %}

@@ -6,22 +6,199 @@
 
 {% block extra_css %}
         <link rel="stylesheet" type="text/css" href="{% static 'Employee/profile.css' %}">
+<!--    <style>-->
+<!--        <style>-->
+<!--        .profile-page-container {-->
+<!--  margin-top: 20px;-->
+<!--}-->
+
+<!--.menu-header {-->
+<!--  font-family: 'Poppins', sans-serif;-->
+<!--  font-weight: 700;-->
+<!--  color: #333;-->
+<!--}-->
+
+<!--.profile-menu .nav-link {-->
+<!--  font-family: 'Poppins', sans-serif;-->
+<!--  font-size: 1.1rem;-->
+<!--  padding: 10px;-->
+<!--  color: #007bff;-->
+<!--  transition: color 0.2s ease-in-out;-->
+<!--}-->
+
+<!--.profile-menu .nav-link:hover,-->
+<!--.profile-menu .nav-link.active {-->
+<!--  color: #0056b3;-->
+<!--  background-color: #f0f0f0;-->
+<!--  border-radius: 5px;-->
+<!--}-->
+
+<!--.text-introduction {-->
+<!--  font-family: 'Poppins', sans-serif;-->
+<!--  font-size: 1rem;-->
+<!--  color: #6c757d;-->
+<!--}-->
+
+<!--.profile-info h2 {-->
+<!--  font-family: 'Poppins', sans-serif;-->
+<!--  font-weight: 600;-->
+<!--  color: #343a40;-->
+<!--}-->
+
+<!--.text-title {-->
+<!--  font-weight: 600;-->
+<!--  color: #343a40;-->
+<!--}-->
+
+<!--.text-value {-->
+<!--  font-weight: 400;-->
+<!--  color: #495057;-->
+<!--}-->
+
+<!--.profile-section h4 {-->
+<!--  font-family: 'Poppins', sans-serif;-->
+<!--  font-weight: 600;-->
+<!--  color: #343a40;-->
+<!--}-->
+
+<!--.btn-primary {-->
+<!--  background-color: #007bff;-->
+<!--  border: none;-->
+<!--}-->
+
+<!--.btn-primary:hover {-->
+<!--  background-color: #0056b3;-->
+<!--}-->
+
+<!--.bg-white {-->
+<!--  background-color: #ffffff !important;-->
+<!--}-->
+
+<!--.shadow-sm {-->
+<!--  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;-->
+<!--}-->
+
+<!--    </style>-->
+<style>
+      .profile-page-container {
+  margin-top: 20px;
+}
+
+.menu-header {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #333;
+}
+
+.profile-menu .nav-link {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1rem;
+  padding: 10px;
+  color: #007bff;
+  transition: color 0.2s ease-in-out;
+}
+
+.profile-menu .nav-link:hover,
+.profile-menu .nav-link.active {
+     color: white;
+    background-color: #0d6efd;
+    font-weight: 700;
+}
+
+.text-introduction {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+.profile-info h2 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #343a40;
+}
+
+.text-title {
+  font-weight: 600;
+  color: #343a40;
+}
+
+.text-value {
+  font-weight: 400;
+  color: #495057;
+}
+
+.profile-section h4 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #343a40;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.bg-white {
+  background-color: #ffffff !important;
+}
+
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="profile-page-container">
+<!--<div class="profile-page-container">-->
 
-{#        profile#}
-                <div class="text-center my-4">
-                    <p class="fs-4">{{ organization.name }}</p>
-                    <p class="text-introduction fw-light">Edit info about your organization across GenZ</p>
-                </div>
+<!--{#        profile#}-->
+<!--                <div class="text-center my-4">-->
+<!--                    <p class="fs-4">{{ organization.name }}</p>-->
+<!--                    <p class="text-introduction fw-light">Edit info about your organization across GenZ</p>-->
+<!--                </div>-->
 
-                <div class="profile-info">
-                    <p class="fs-2">Your organization info in GenZ services</p>
-                    <p class="text-introduction fw-light">Organization info and options to manage it. You can make changes for some of this info, like contact details, so others can reach you easily.</p>
+<!--                <div class="profile-info">-->
+<!--                    <p class="fs-2">Your organization info in GenZ services</p>-->
+<!--                    <p class="text-introduction fw-light">Organization info and options to manage it. You can make changes for some of this info, like contact details, so others can reach you easily.</p>-->
 
-                    <div class="edit-profile-container">
+
+<!--                </div>-->
+<!--</div>-->
+
+<div class="profile-page-container container">
+    <div class="row mb-1 p-1" style="border-bottom: 2px solid #63aeff">
+        <div class="col-md-3">
+             <div class="text-center mt-2" >
+                <h2 style="font-weight:900">{{ organization.name }}</h2>
+            </div>
+        </div>
+         <div class="col-md-9">
+             <h5 class="mb-0" style="font-weight: 700">Your organization info in GenZ services</h5>
+            <p class="text-introduction text-muted"  style="font-weight: 600">Organization info and options to manage it. You can make changes for some of this info, like contact details, so others can reach you easily.</p>
+        </div>
+    </div>
+    <div class="row">
+
+        <!-- Left-side Navigation Menu -->
+        <div class="col-md-3">
+            <div id="list-example" class="profile-menu  bg-light rounded shadow-sm list-group">
+<!--                <h5 class="mb-3">Navigation</h5>-->
+                <nav class="nav flex-column">
+                    <a class="nav-link mb-2  link-dark list-group-item list-group-item-action" href="{% url 'Employee:profile' user.employee.organization.domain_name %}">Organization Info</a>
+                    <a class="nav-link active link-dark list-group-item list-group-item-action" href="{% url 'Employee:edit_profile' user.employee.organization.domain_name %}">Edit Profile</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Right-side Profile Information -->
+        <div class="col-md-9">
+
+ <div class="edit-profile-container">
                         <form method="post">
                             {% csrf_token %}
 
@@ -38,8 +215,10 @@
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </form>
                     </div>
-                </div>
-</div>
+
+        </div>
+
+    </div>
 </div>
 
 {% endblock %}
