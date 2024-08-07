@@ -198,6 +198,6 @@ def clear_index_view(request):
     company_name = Employee.objects.get(user=user).organization.name
     task_title = "Untrain task"
     organization = employee.organization
-    untrain_task(task_title, organization.id, employee.user.id,company_name)
+    untrain_task.delay(task_title, organization.id, employee.user.id,company_name)
     print("Hello")
     return redirect('Employee:tasklist')

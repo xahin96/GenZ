@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+<link rel="stylesheet" href="../../../static/style.css">{% extends 'base.html' %}
 {% block title %}GenZ{% endblock %}
  {% load static %}
 {% block extra_css %}
@@ -6,66 +6,226 @@
 <link rel="stylesheet" type="text/css" href="{% static 'main/dashboard.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'main/home.css' %}">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+
+body {
+  background-image: url('https://img.freepik.com/premium-photo/technology-background-female-face-robot-artificial-intelligence-data-flow-concept-generative-ai_454018-334.jpg?w=1060');
+  background-size: cover; /* Cover the entire page */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-attachment: fixed; /* Keep the background fixed on scroll */
+  height: 100vh; /* Ensure the body takes the full height */
+  margin: 0;
+}
+.hero {
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a darker overlay */
+  border-radius: 10px;
+  width: 1200px;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+}
+
+.card-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-title {
+  margin-bottom: 0;
+}
+
+.card-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-date {
+  margin-top: 0.5rem;
+}
+/* Card styles */
+.card {
+  background-color: #1c1e21; /* Dark background for the card */
+  border-radius: 0.5rem; /* Rounded corners */
+  border: none; /* Remove default border */
+}
+
+.card-title {
+  color: #f8f9fa; /* Light color for the card title */
+  font-family: 'Poppins', sans-serif; /* Elegant font for a modern look */
+  font-size: 1.1rem; /* Adjust font size */
+  font-weight: 600; /* Bold font */
+}
+
+.card-number {
+  color: #007bff; /* Accent color for the number */
+  font-family: 'Roboto', sans-serif; /* Modern font for numbers */
+  font-weight: 700; /* Make the number bold */
+}
+
+.card-date {
+  color: #adb5bd; /* Muted color for the date */
+  font-size: 0.9rem; /* Smaller font size for the date */
+  font-family: 'Poppins', sans-serif; /* Consistent font family */
+}
+
+.card-body {
+  padding: 1.5rem; /* Add padding inside the card */
+}
+
+.card:hover {
+  transform: translateY(-0.5rem); /* Slight lift on hover */
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.card-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+</style>
 {% endblock %}
 
 
 {% block content %}
-    <div class="container w-75">
-    <div class="home-container">
-        <div class="hero">
-            <h1>DESIGN THE FUTURE</h1>
-            <p>Welcome to GenZ. get your questions answered </p>
-            <div class="cta">
-                <a href="{% url 'Employee:login' %}">
-                    <button class="btn btn-primary">Get started</button>
-                </a>
-            </div>
-        </div>
-    </div>
+<!--    <div class="container w-75">-->
+<!--    <div class="home-container">-->
+<!--        <div class="hero">-->
+<!--            <h1>DESIGN THE das FUTURE</h1>-->
+<!--            <p>Welcome to GenZ. get your questions answered </p>-->
+<!--            <div class="cta">-->
+<!--                <a href="{% url 'Employee:login' %}">-->
+<!--                    <button class="btn btn-primary">Get started</button>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
-    <div class="flex-grow-1">
-                <div class="container-dashboard">
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title-container">
-                                    <h5 class="card-title">Active Users</h5>
-                                    <div class="card-number">123</div>
-                                </div>
-                                <p class="card-date">2024-07-02</p>
-<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-                            </div>
-                        </div>
-                    </div>
-                         <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title-container">
-                                    <h5 class="card-title">No. of Questions</h5>
-                                    <div class="card-number">4512</div>
-                                </div>
-                                <p class="card-date">2024-07-02</p>
-<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-                            </div>
-                        </div>
-                    </div>
-                         <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title-container">
-                                    <h5 class="card-title">Avg. Response Time</h5>
-                                    <div class="card-number">0.3s</div>
-                                </div>
-                                <p class="card-date">2024-07-02</p>
-<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
+<!--    <div class="flex-grow-1">-->
+<!--                <div class="container-dashboard">-->
+<!--                    <div class="row mb-3">-->
+<!--                        <div class="col-md-4">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="card-title-container">-->
+<!--                                    <h5 class="card-title">Active Users</h5>-->
+<!--                                    <div class="card-number">123</div>-->
+<!--                                </div>-->
+<!--                                <p class="card-date">2024-07-02</p>-->
+<!--&lt;!&ndash;                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                         <div class="col-md-4">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="card-title-container">-->
+<!--                                    <h5 class="card-title">No. of Questions</h5>-->
+<!--                                    <div class="card-number">4512</div>-->
+<!--                                </div>-->
+<!--                                <p class="card-date">2024-07-02</p>-->
+<!--&lt;!&ndash;                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                         <div class="col-md-4">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="card-title-container">-->
+<!--                                    <h5 class="card-title">Avg. Response Time</h5>-->
+<!--                                    <div class="card-number">0.3s</div>-->
+<!--                                </div>-->
+<!--                                <p class="card-date">2024-07-02</p>-->
+<!--&lt;!&ndash;                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>&ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--    </div>-->
+<div class="container w-75">
+  <div class="home-container text-center">
+    <div class="hero text-white">
+      <h1 class="display-4">DESIGN THE FUTURE</h1>
+      <p class="lead">Welcome to GenZ. Get your questions answered</p>
+      <div class="cta my-4">
+        <a href="{% url 'Employee:login' %}">
+          <button class="btn btn-primary btn-lg">Get Started</button>
+        </a>
+      </div>
     </div>
+  </div>
+
+  <div class="flex-grow-1">
+    <div class="container-dashboard mt-5">
+      <div class="row g-4">
+        <div class="col-md-3">
+        <div class="card shadow-sm bg-dark text-white">
+            <div class="card-body">
+              <div class="card-title-container d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Organizations</h5>
+                <div class="card-number fs-4 fw-bold">{{no_of_organization}}</div>
+              </div>
+              <p class="card-date text-muted mt-2">{{updated_on}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+         <div class="card shadow-sm bg-dark text-white">
+            <div class="card-body">
+              <div class="card-title-container d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Employees</h5>
+                <div class="card-number fs-4 fw-bold">{{no_of_employee}}</div>
+              </div>
+              <p class="card-date text-muted mt-2">{{updated_on}}</p>
+            </div>
+          </div>
+        </div>
+<!--        <div class="col-md-4">-->
+<!--          <div class="card shadow-sm">-->
+<!--            <div class="card-body">-->
+<!--              <div class="card-title-container d-flex justify-content-between align-items-center">-->
+<!--                <h5 class="card-title mb-0">No. of Questions</h5>-->
+<!--                <div class="card-number fs-4 fw-bold">{{no_of_questions}}</div>-->
+<!--              </div>-->
+<!--              <p class="card-date text-muted mt-2">2024-07-02</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="col-md-3">
+  <div class="card shadow-sm bg-dark text-white">
+    <div class="card-body">
+      <div class="card-title-container d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Questions</h5>
+        <div class="card-number fs-4 fw-bold">{{ no_of_questions }}</div>
+      </div>
+      <p class="card-date text-muted mt-2">{{updated_on}}</p>
+    </div>
+  </div>
+</div>
+        <div class="col-md-3">
+  <div class="card shadow-sm bg-dark text-white">
+    <div class="card-body">
+      <div class="card-title-container d-flex justify-content-between align-items-center">
+        <h5 class="card-title mb-0">Tasks</h5>
+        <div class="card-number fs-4 fw-bold">{{ no_of_task }}</div>
+      </div>
+      <p class="card-date text-muted mt-2">{{updated_on}}</p>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
