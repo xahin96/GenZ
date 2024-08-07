@@ -53,7 +53,7 @@
             display: flex;
             flex-direction: column;
             flex: 1;
-            margin-left: 250px;
+
             height: 100vh;
             overflow-y: auto;
         }
@@ -88,9 +88,8 @@
 
 
 .form-wrapper {
-    position: fixed;
-    bottom: 0;
-    width: calc(100% - 250px); /* Adjust for sidebar width */
+
+    width: 100%; /* Adjust for sidebar width */
     padding: 10px;
     background-color: #fff;
     border-top: 1px solid #ddd;
