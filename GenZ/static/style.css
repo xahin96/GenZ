@@ -12,44 +12,23 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Cabin", sans-serif;
-  font-size: 14px;
+  font-family: "Roboto Thin", sans-serif;
 }
 
-.container {
-    padding: 10px;
+.container-fluid {
     border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
     flex-wrap: wrap;
     width: 100%;
-  /*justify-content: center;*/
+    padding: 0;
 }
-
-input {
-      padding: 10px 10px !important;
-    font-size: 12px !important;
-    line-height: 10px !important;
-    border-radius: 5px !important;
-    height: auto !important;
-    font-weight: bold !important;
-    color: #000000 !important;
-}
-
-
-label {
-  font-size: 12px;
-  line-height: 25px;
-  font-weight: bold;
-  margin: 1px 0px 2px;
-}
-
 
  .btn-primary {
             background-color: #007bff;
             border: none;
+            color: white;
         }
         .btn-primary:hover {
             background-color: #0056b3;
@@ -64,6 +43,7 @@ label {
 a{
     text-decoration: none !important;
 }
+
 .navbar {
     background-color: #333; /* Dark background color */
     color: white;
@@ -112,6 +92,7 @@ a{
 
 .employee-list {
   display: flex;
+    align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -156,12 +137,11 @@ a{
 }
 
 .nav-dropdown .dropdown-menu {
+    line-height: 15px;
   display: none;
   position: absolute;
   top: 100%;
-  background-color: #333;
-  color: #4CAF50;
-  min-width: 150px;
+  min-width: 170px;
   /*box-shadow: 0 8px 16px rgba(0,0,0,0.2);*/
   /*z-index: 1;*/
   margin-right: 30px;
@@ -179,61 +159,14 @@ a{
   padding: 8px 8px;
   text-decoration: none;
   display: block;
-  color: white;
 }
 
 .dropdown-item:hover {
-  background-color: #45a049;
-}
-
-
-.login-register a {
-    margin-left: 10px;
-}
-
-.login-signup button {
-  background-color: aliceblue;
-  color: black;
-  border: none;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-left: 10px;
-  cursor: pointer;
-  border-radius: 12px;
-    }
-
-
-.login-register button {
-    background-color: #007BFF; /* Blue background color */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.login-register button i {
-    margin-right: 8px; /* Space between icon and text */
-}
-
-.login-signup button:hover {
-  background-color: #45a049;
+  color: #343a40;
 }
 
 .menu-icon {
   display: flex;
-  color: cornsilk;
   flex-direction: column;
   justify-content: space-between;
   width: 20px;
@@ -243,7 +176,7 @@ a{
 
 .menu-icon div {
   height: 3px;
-  background-color: #45a049;
+  background-color: white;
   margin: 2px 0;
 }
 
@@ -260,24 +193,22 @@ a{
   font-size: 18px;
   color: #666;
     }
-.login-register button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
 
 .container-signup-login {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-        }
-        .container-signup-login a {
-            text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
 
-            color:white;
-            font-size: 2rem;
-            transition: color 0.3s;
-        }
-        .container-signup-login a:hover {
-            color: white;
-        }
+.container-signup-login a {
+    text-decoration: none;
+    color:white;
+    font-size: 1.3rem;
+    border-color: white;
+    transition: color 0.3s;
+}
+
+.container-signup-login a:hover {
+    color: white;
+}

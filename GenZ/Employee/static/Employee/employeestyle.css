@@ -1,10 +1,17 @@
-
+.login-signup-container {
+    min-width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .login-form {
-            width: 30%;
-            border: none;
-            /*border-radius: 15px;*/
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 30%;
+    border: none;
+    /*border-radius: 15px;*/
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .login-form  .card-header {
     background-color: #007bff9c;
@@ -87,4 +94,3 @@
 .form button:hover {
     background-color: #45a049;
 }
-

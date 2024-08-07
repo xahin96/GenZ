@@ -15,25 +15,23 @@
         <h3>Tasks of {{ organization.name }}</h3>
 
         <div class="col">
-            <button class="btn btn-success float-right" onclick="location.reload();">Refresh</button>
+            <button class="btn btn-primary float-right">Refresh</button>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover">
+    <div class="task-table-container row justify-content-center border border-light-subtle">
+                <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Task ID</th>
-                            <th>Status</th>
-                            <th>Title</th>
-                            <th>Created By</th>
+                            <th scope="col">Task ID</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Created By</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for task in tasks %}
                         <tr>
-                            <td>{{ task.id }}</td>
+                            <td scope="row">{{ task.id }}</td>
                             <td>{{ task.get_task_status_display }}</td>
                             <td>{{ task.task_title }}</td>
                             <td>{{ task.employee }}</td>
@@ -41,8 +39,6 @@
                         {% endfor %}
                     </tbody>
                 </table>
-            </div>
-        </div>
     </div>
 </div>
 

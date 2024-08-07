@@ -1,0 +1,81 @@
+.profile-page-container {
+    margin: 1rem;
+    /*margin-top: 20px;*/
+    /*margin-bottom: 50px;*/
+    /*margin-left: unset;*/
+}
+
+.profile-menu {
+    /*margin-left: 10px;*/
+    /*line-height: 50px;*/
+}
+
+.btn-primary {
+    /*margin-left: 15px;*/
+}
+
+.text-decoration-none{
+    text-decoration: none;
+    color: white;
+}
+
+.profile-info {
+    /*margin-top: 35px;*/
+    /*padding: 15px;*/
+    border-radius: 10px;
+}
+
+.profile-section {
+    /*margin-top: 15px;*/
+    /*padding-top: 15px;*/
+    /*padding-left: 20px;*/
+    /*padding-right: 20px;*/
+    border-radius: 0.9rem;
+    border-width: inherit;
+}
+
+.profile-section h5 {
+    font-weight: bold;
+}
+
+.text-introduction {
+    font-size: 0.85rem;
+}
+
+.text-title {
+
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.table {
+    /*margin-top: 15px;*/
+}
+
+.tbody, td, tfoot, th, thead, tr {
+    /*line-height: 40px;*/
+}
+
+
+.edit-profile-container  {
+    /*margin-top: 15px;*/
+    /*margin-bottom: 20px;*/
+}
+
+input {
+    width: 100%;
+    padding: 10px 10px !important;
+    font-size: 14px !important;
+    line-height: 15px !important;
+    height: auto !important;
+    color: #000000 !important;
+    margin-bottom: 13px;
+}
+
+label {
+    font-size: 11px;
+    line-height: 25px;
+    font-weight: 0;
+}
