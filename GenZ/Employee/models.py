@@ -1,9 +1,11 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/<organization_domain>/<filename>
     return f'{instance.organization.domain_name}/{filename}'
+
 
 class Organization(models.Model):
     domain_name = models.CharField(max_length=100, unique=True)
@@ -21,6 +23,7 @@ class Organization(models.Model):
     def __str__(self):
         return self.domain_name
 
+
 class Employee(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True, blank=True)
@@ -34,6 +37,7 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.user.email
+
 
 class UploadedFile(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
