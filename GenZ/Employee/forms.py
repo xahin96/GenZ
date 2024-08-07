@@ -51,5 +51,5 @@ class UploadFileForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Organization
-        fields = ['name', 'website', 'address', 'city', 'province', 'postal_code', 'country', 'contact_name', 'contact_email', 'contact_phone']
+        fields = ['name', 'website', 'contact_name', 'contact_email', 'contact_phone', 'address', 'city', 'province', 'postal_code', 'country']
         labels = {'province': 'Province/State'}

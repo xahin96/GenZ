@@ -10,22 +10,8 @@
 
 {% block content %}
 <div class="profile-page-container container-fluid">
-    <div class="row">
-
-{#        menu#}
-        <div class="col-sm-4">
-            <div class="profile-menu">
-                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:profile' user.employee.organization.domain_name %}">Profile</a></p>
-                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:edit_profile' user.employee.organization.domain_name %}">Edit Profile</a></p>
-                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:dashboard' %}">Statistics</a></p>
-                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:train' %}">Train Your Bot</a></p>
-                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:tasklist' %}">Tasks</a></p>
-                <p><a class="link-dark link-offset-2 link-underline-opacity-0 link-opacity-25-hover" href="{% url 'Employee:logout' %}">Log Out</a></p>
-            </div>
-        </div>
 
 {#        profile#}
-        <div class="col-sm-8">
                 <div class="text-center my-4">
                     <p class="fs-4">{{ organization.name }}</p>
                     <p class="text-introduction fw-light">Edit info about your organization across GenZ</p>
@@ -52,11 +38,7 @@
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </form>
                     </div>
-
-
                 </div>
-        </div>
-    </div>
 </div>
 </div>
 

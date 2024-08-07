@@ -2,6 +2,7 @@
     margin-top: 20px;
     margin-bottom: 50px;
     margin-left: unset;
+    justify-content: space-evenly;
 }
 
 .profile-menu {
