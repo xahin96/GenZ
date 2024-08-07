@@ -6,8 +6,80 @@
 
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'Employee/profile.css' %}">
-    <style>
-        .profile-page-container {
+<!--    <style>-->
+<!--        .profile-page-container {-->
+<!--  margin-top: 20px;-->
+<!--}-->
+
+<!--.menu-header {-->
+<!--  font-family: 'Poppins', sans-serif;-->
+<!--  font-weight: 700;-->
+<!--  color: #333;-->
+<!--}-->
+
+<!--.profile-menu .nav-link {-->
+<!--  font-family: 'Poppins', sans-serif;-->
+<!--  font-size: 1.1rem;-->
+<!--  padding: 10px;-->
+<!--  color: #007bff;-->
+<!--  transition: color 0.2s ease-in-out;-->
+<!--}-->
+
+<!--.profile-menu .nav-link:hover,-->
+<!--.profile-menu .nav-link.active {-->
+<!--  color: #0056b3;-->
+<!--  background-color: #f0f0f0;-->
+<!--  border-radius: 5px;-->
+<!--}-->
+
+<!--.text-introduction {-->
+<!--  font-family: 'Poppins', sans-serif;-->
+<!--  font-size: 1rem;-->
+<!--  color: #6c757d;-->
+<!--}-->
+
+<!--.profile-info h2 {-->
+<!--  font-family: 'Poppins', sans-serif;-->
+<!--  font-weight: 600;-->
+<!--  color: #343a40;-->
+<!--}-->
+
+<!--.text-title {-->
+<!--  font-weight: 600;-->
+<!--  color: #343a40;-->
+<!--}-->
+
+<!--.text-value {-->
+<!--  font-weight: 400;-->
+<!--  color: #495057;-->
+<!--}-->
+
+<!--.profile-section h4 {-->
+<!--  font-family: 'Poppins', sans-serif;-->
+<!--  font-weight: 600;-->
+<!--  color: #343a40;-->
+<!--}-->
+
+<!--.btn-primary {-->
+<!--  background-color: #007bff;-->
+<!--  border: none;-->
+<!--}-->
+
+<!--.btn-primary:hover {-->
+<!--  background-color: #0056b3;-->
+<!--}-->
+
+<!--.bg-white {-->
+<!--  background-color: #ffffff !important;-->
+<!--}-->
+
+<!--.shadow-sm {-->
+<!--  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;-->
+<!--}-->
+
+<!--    </style>-->
+<style>
+      .profile-page-container {
   margin-top: 20px;
 }
 
@@ -27,9 +99,9 @@
 
 .profile-menu .nav-link:hover,
 .profile-menu .nav-link.active {
-  color: #0056b3;
-  background-color: #f0f0f0;
-  border-radius: 5px;
+     color: white;
+    background-color: #0d6efd;
+    font-weight: 700;
 }
 
 .text-introduction {
@@ -77,7 +149,7 @@
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 
-    </style>
+</style>
 {% endblock %}
 
 {% block content %}
@@ -185,15 +257,11 @@
 
         <!-- Left-side Navigation Menu -->
         <div class="col-md-3">
-            <div class="profile-menu p-3 bg-light rounded shadow-sm">
+            <div id="list-example" class="profile-menu  bg-light rounded shadow-sm list-group">
 <!--                <h5 class="mb-3">Navigation</h5>-->
                 <nav class="nav flex-column">
-                    <a class="nav-link active link-dark" href="{% url 'Employee:profile' user.employee.organization.domain_name %}">Profile</a>
-                    <a class="nav-link link-dark" href="{% url 'Employee:edit_profile' user.employee.organization.domain_name %}">Edit Profile</a>
-                    <a class="nav-link link-dark" href="{% url 'Employee:dashboard' %}">Statistics</a>
-                    <a class="nav-link link-dark" href="{% url 'Employee:train' %}">Train Your Bot</a>
-                    <a class="nav-link link-dark" href="{% url 'Employee:tasklist' %}">Tasks</a>
-                    <a class="nav-link link-dark" href="{% url 'Employee:logout' %}">Log Out</a>
+                    <a class="nav-link mb-2 active link-dark list-group-item list-group-item-action" href="{% url 'Employee:profile' user.employee.organization.domain_name %}">Organization Info</a>
+                    <a class="nav-link link-dark list-group-item list-group-item-action" href="{% url 'Employee:edit_profile' user.employee.organization.domain_name %}">Edit Profile</a>
                 </nav>
             </div>
         </div>
@@ -202,34 +270,83 @@
         <div class="col-md-9">
 
 
-            <div class="row mt-3">
+            <div class="profile-info scrollspy-example" data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" tabindex="0">
 
-                <div class="col-md-6">
-<!--                    <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded-top">-->
-<!--                        <h4 class="mb-0">Basic info</h4>-->
-<!--                    </div>-->
+                <div class="row">
+
+                    <div class="col-md-8">
+                        <div id="list-item-1" class="profile-section mb-4">
+                        <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded-top">
+                            <h4 class="mb-0">Basic info</h4>
+                        </div>
+                        <div class="border rounded-bottom p-3 bg-white shadow-sm">
+                            <table class="table mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-title">Title: </td>
+                                        <td class="text-value">{{ organization.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-title">Domain Name: </td>
+                                        <td class="text-value">{{ organization.domain_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-title">Website: </td>
+                                        <td class="text-value">{{ organization.website }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div id="list-item-2" class="profile-section mb-4">
+                        <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded-top">
+                            <h4 class="mb-0">Contact info</h4>
+                        </div>
+                        <div class="border rounded-bottom p-3 bg-white shadow-sm">
+                            <table class="table mb-0">
+                                <tbody>
+                                    <tr>
+                                        <td class="text-title">Contact: </td>
+                                        <td class="text-value">{{ organization.contact_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-title">Email: </td>
+                                        <td class="text-value">{{ organization.contact_email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-title">Phone: </td>
+                                        <td class="text-value">{{ organization.contact_phone }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="list-item-3" class="profile-section mb-4">
+                    <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded-top">
+                        <h4 class="mb-0">Addresses</h4>
+                    </div>
                     <div class="border rounded-bottom p-3 bg-white shadow-sm">
                         <table class="table mb-0">
                             <tbody>
                                 <tr>
-                                    <td class="text-title">Title: </td>
-                                    <td class="text-value">{{ organization.name }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-title">Domain Name: </td>
-                                    <td class="text-value">{{ organization.domain_name }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-title">Website: </td>
-                                    <td class="text-value">{{ organization.website }}</td>
-                                </tr>
-                                <tr>
                                     <td class="text-title">Address: </td>
-                                    <td class="text-value">address</td>
+                                    <td class="text-value">{{ organization.address }}</td>
                                 </tr>
                                 <tr>
                                     <td class="text-title">City: </td>
                                     <td class="text-value">{{ organization.city }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title">Province/State: </td>
+                                    <td class="text-value">{{ organization.province }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-title">Postal Code: </td>
+                                    <td class="text-value">{{ organization.postal_code }}</td>
                                 </tr>
                                 <tr>
                                     <td class="text-title">Country: </td>
@@ -239,33 +356,12 @@
                         </table>
                     </div>
                 </div>
-
-                <div class="col-md-6">
-<!--                    <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded-top">-->
-<!--                        <h4 class="mb-0">Contact info</h4>-->
-<!--                    </div>-->
-                    <div class="border rounded-bottom p-3 bg-white shadow-sm">
-                        <table class="table mb-0">
-                            <tbody>
-                                <tr>
-                                    <td class="text-title">Contact: </td>
-                                    <td class="text-value">contact_name</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-title">Email: </td>
-                                    <td class="text-value">email</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-title">Phone: </td>
-                                    <td class="text-value">phone</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
-
-                <div class="text-left mt-2">
-                    <a class="btn btn-primary text-white btn-lg px-5" href="{% url 'Employee:edit_profile' organization.domain_name %}">Edit Profile</a>
+                <div class="row">
+                    <div class="text-center">
+                        <a class="btn btn-primary text-white btn-lg px-5" href="{% url 'Employee:edit_profile' organization.domain_name %}">Edit Profile</a>
+                    </div>
                 </div>
             </div>
         </div>

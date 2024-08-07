@@ -106,7 +106,6 @@ def profile_view(request, domain_name):
     organization = get_object_or_404(Organization, domain_name=domain_name)
 
     context = {
-
         'organization': organization,
     }
     return render(request, 'Employee/profile.html', context)
@@ -127,13 +126,6 @@ def edit_profile(request, domain_name):
 
     return render(request, 'Employee/edit_profile.html', {'form': form, 'organization': organization})
 
-
-def organization_delete(request, pk):
-    organization = get_object_or_404(Organization, pk=pk)
-    if request.method == 'POST':
-        organization.delete()
-        return redirect('organization_list')
-    return render(request, 'Employee/delete.html', {'organization': organization})
 
 @login_required
 def fillIndex_view(request):
@@ -206,6 +198,6 @@ def clear_index_view(request):
     company_name = Employee.objects.get(user=user).organization.name
     task_title = "Untrain task"
     organization = employee.organization
-    untrain_task(task_title, organization.id, employee.user.id,company_name)
+    untrain_task.delay(task_title, organization.id, employee.user.id,company_name)
     print("Hello")
     return redirect('Employee:tasklist')

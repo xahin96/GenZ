@@ -5,6 +5,23 @@ from django.conf import settings
 from .models import Task,UploadedFile, Organization
 import time
 from .chat import *
+import time
+import uuid
+
+import openai
+import openai.embeddings_utils
+import pinecone
+from dotenv import load_dotenv
+import logging
+from PyPDF2 import PdfReader
+from pinecone.grpc import PineconeGRPC as Pinecone
+from pinecone import ServerlessSpec
+from django.conf import settings
+media_path = settings.MEDIA_ROOT
+pc = Pinecone(api_key='cbce143e-7f60-4ba2-8b50-cb10eb3004a8')
+load_dotenv()
+
+openai.api_key = "sk-proj-1yFkH3wOlBhkDY7xwWyyT3BlbkFJXoUpo2iJQbJplPN8665L"
 
 @shared_task
 def long_running_task(task_title, organization_id, employee_id):
@@ -47,6 +64,7 @@ def train_task(task_title, organization_id, employee_id, company_name):
         task_status='COMPLETED'
     )
     return "Task completed"
+
 
 @shared_task
 def untrain_task(task_title, organization_id, employee_id, company_name):
