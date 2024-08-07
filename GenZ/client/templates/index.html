@@ -62,5 +62,36 @@ input.addEventListener("keypress", function(event) {
 
 </script>
 
+<button id="rateUsBtn" class="btn btn-secondary" style="position: fixed; bottom: 10px; right: 10px;">Rate Us</button>
+
+<script>
+    // Get the input field
+    var input = document.getElementById("content");
+
+    // Execute a function when the user presses a key on the keyboard
+    input.addEventListener("keypress", function(event) {
+        // If the user presses the "Enter" key on the keyboard
+        if (event.key === "Enter") {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("myBtn").click();
+        }
+    });
+
+    // Add event listener to the "Rate Us" button
+    document.getElementById("rateUsBtn").addEventListener("click", function() {
+        var stars = prompt("Rate us (1-5 stars):");
+        if (stars != null) {
+            var feedback = prompt("Please provide your feedback:");
+            if (feedback != null) {
+                // You can submit the rating and feedback to your server here
+                alert("Thank you for your feedback!");
+            }
+        }
+    });
+</script>
+
+
 {% endblock %}
 

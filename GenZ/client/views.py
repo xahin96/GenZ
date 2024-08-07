@@ -37,3 +37,18 @@ def content(request,company_name,content_id):
     contents = Content.objects.all().order_by('-pk')
     questions = Question.objects.filter(content=content_id).order_by('-pk')
     return render(request,'index.html',{'contents':contents,'questions':questions,'content_id':content_id,'company_name':company_name})
+
+
+
+def rate_us(request):
+    if request.method == 'POST':
+        form = RatingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('thank_you')
+    else:
+        form = RatingForm()
+    return render(request, 'ratings/rate_us.html', {'form': form})
+
+def thank_you(request):
+    return render(request, 'ratings/thank_you.html')

@@ -18,3 +18,12 @@ class Question(models.Model):
         return self.question
 
 
+class Rating(models.Model):
+    STARS = [(i, str(i)) for i in range(1, 6)]
+
+    stars = models.IntegerField(choices=STARS)
+    feedback = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.stars} stars'
