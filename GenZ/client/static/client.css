@@ -11,8 +11,8 @@
             background-color: #f9f9f9;
             padding: 10px;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            height: 100vh;
-            position: fixed;
+            height: 88vh;
+            /*position: fixed;*/
             overflow-y: auto;
         }
         .sidebar h2 {
@@ -54,7 +54,7 @@
             flex-direction: column;
             flex: 1;
 
-            height: 100vh;
+            height: 88vh;
             overflow-y: auto;
         }
  .content-wrapper {
