@@ -1,32 +1,12 @@
-body {
-    background-color: lightgray;
-}
-
-
-.container {
-    max-width: 800px; /* Center content */
-}
-
 .table {
-    background-color: #146c43; /* Green table background */
-    color: #ffffff; /* White text */
+    margin-top: 15px;
 }
 
-.table th, .table td {
-    border-color: #ffffff; /* White border color */
+.task-table-container {
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
 }
 
-.table thead th {
-    background-color: #ffffff; /* Dark grey header */
-    border-color: #ffffff; /* White border color */
-}
 
-.btn-success {
-    background-color: #198754; /* Darker green for button */
-    border-color: #198754;
-}
 
-.btn-success:hover {
-    background-color: #146c43; /* Darker shade on hover */
-    border-color: #146c43;
-}

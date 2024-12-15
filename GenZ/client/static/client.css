@@ -1,20 +1,18 @@
+.container-fluid {
+    justify-content: flex-start;
+}
 
-       .navbar{
-           position: fixed; !important;
-       }
-        .container-fluid {
-            display: flex;
-            padding: 0 !important;
-            width: 100%;
-        }
+.chat-container {
+    width: 100%;
+}
+
         .sidebar {
             width: 250px;
             background-color: #f9f9f9;
             padding: 10px;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-            height: 100vh;
-            position: fixed;
-            top: 3.5rem;
+            height: 88vh;
+            /*position: fixed;*/
             overflow-y: auto;
         }
         .sidebar h2 {
@@ -55,9 +53,8 @@
             display: flex;
             flex-direction: column;
             flex: 1;
-            padding: 20px;
-            margin-left: 250px;
-            height: 100vh;
+
+            height: 88vh;
             overflow-y: auto;
         }
  .content-wrapper {
@@ -91,9 +88,8 @@
 
 
 .form-wrapper {
-    position: fixed;
-    bottom: 0;
-    width: calc(100% - 250px); /* Adjust for sidebar width */
+
+    width: 100%; /* Adjust for sidebar width */
     padding: 10px;
     background-color: #fff;
     border-top: 1px solid #ddd;
@@ -135,6 +131,6 @@
     font-weight: 700;
 }
 i{
-    font-size: 1.3em;
+    /*font-size: 1.3em;*/
     font-weight: bold;
 }

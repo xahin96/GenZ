@@ -21,13 +21,14 @@ openai.api_key = "sk-proj-1yFkH3wOlBhkDY7xwWyyT3BlbkFJXoUpo2iJQbJplPN8665L"
 # pinecone_index_name = 'company1'
 
 
-def load_documents(company_name):
+def load_documents(company_name,file_paths):
     documents = []
     documents_path = media_path + '\\' + company_name + '\\'
     if os.path.exists(documents_path) and os.path.isdir(documents_path):
         print(media_path)
         for filename in os.listdir(documents_path):
-            if filename.split('.')[-1] == "pdf":
+            if filename.split('.')[-1] == "pdf" and (filename.split('.')[0] in file_paths):
+                print("Uploading " + filename)
                 file_path = os.path.join(documents_path, filename)
                 with open(file_path, 'rb') as file:
                     reader = PdfReader(file)
@@ -145,3 +146,11 @@ def create_prompt(question, document_content):
            'Document:\n\n' \
            f'{document_content}\n\n' \
            f'Question: {question}'
+
+
+def delete_index(company_name):
+    pc.delete_index(company_name)
+
+def clear_index(company_name):
+    index = pc.Index(company_name)
+    index.delete(delete_all=True)

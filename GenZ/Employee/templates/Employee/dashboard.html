@@ -6,221 +6,222 @@
 
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'Employee/dashboard.css' %}">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+     {#.header {#}
+     {#       text-align: center;#}
+     {#       color:  #83adfa;#}
+     {#       padding: 2rem 0;#}
+     {#   }#}
+
+           .header {
+            position: relative;
+            text-align: center;
+            color: #83adfa;
+            padding: 2rem 0;
+            overflow: hidden;
+            background-color: transparent;
+               margin: 5rem;
+        }
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+                font-weight: 900;
+        }
+        .header p {
+            font-size: 1.25rem;
+        }
+        .line {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: rgb(131 173 250);
+            top: 0;
+            animation: move-line 5s linear infinite;
+        }
+        .line:nth-child(1) { left: 10%; animation-duration: 5s; }
+        .line:nth-child(2) { left: 20%; animation-duration: 4s; }
+        .line:nth-child(3) { left: 30%; animation-duration: 6s; }
+        .line:nth-child(4) { left: 40%; animation-duration: 7s; }
+        .line:nth-child(5) { left: 50%; animation-duration: 3s; }
+        .line:nth-child(6) { left: 60%; animation-duration: 8s; }
+        .line:nth-child(7) { left: 70%; animation-duration: 5.5s; }
+        .line:nth-child(8) { left: 80%; animation-duration: 4.5s; }
+        .line:nth-child(9) { left: 90%; animation-duration: 6.5s; }
+        .line:nth-child(10) { left: 95%; animation-duration: 7.5s; }
+
+        @keyframes move-line {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .container{
+            padding: 10px;
+            display: block;/
+            height: 100%;
+            width: 100%;
+        }
+        .icon-container {
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 75px;
+    background-color: #83adfa;
+    border-radius: 50%;
+}
+.card-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
+.card-number {
+    font-size: 2.5rem;
+}
+.card-title{
+    color: #83adfa;
+}
+.card-body {
+    background-color: transparent;
+    color: #83adfa;
+}
+
+        .icon-container i{
+            font-size: 3rem;
+            color: white !important;
+        }
+        .detail-container{
+            display: block;
+    float: right;
+    text-align: right;
+    width: 100%;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
     <div class="container">
-        <div class="hero">
-            <h1>DESIGN THE FUTURE</h1>
-            <p>Welcome to GenZ. get your questions answered </p>
-            <div class="cta">
-                <a href="{% url 'Employee:train' %}">
-                    <button>Train your bot</button>
-                </a>
+        <div class="row">
+            <div class="col-md-12">
+                 <div class="header">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+            <h1>Welcome to Our Dashboard</h1>
+            <p>Get insights into your data and track your progress</p>
+        </div>
             </div>
         </div>
         <div class="row">
-                        <div class="col-md-4">
-                        <div class="card">
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
                             <div class="card-body">
-                                <div class="card-title-container">
-                                    <h5 class="card-title">Active Users</h5>
-                                    <div class="card-number">123</div>
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-container mr-3">
+                                        <i class="bi bi-building fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="detail-container">
+                                        <h5 class="card-title mb-0">No. of Organizations</h5>
+                                        <div class="card-number">{{ no_of_organizations }}</div>
+                                    </div>
                                 </div>
-                                <p class="card-date">2024-07-02</p>
-<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
                             </div>
                         </div>
                     </div>
-                         <div class="col-md-4">
-                        <div class="card">
+            <div class="col-md-4">
+                        <div class="card shadow-sm">
                             <div class="card-body">
-                                <div class="card-title-container">
-                                    <h5 class="card-title">No. of Questions</h5>
-                                    <div class="card-number">4512</div>
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-container mr-3">
+                                        <i class="bi bi-people fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="detail-container">
+                                        <h5 class="card-title mb-0">No. of Users</h5>
+                                        <div class="card-number">{{ no_of_users }}</div>
+                                    </div>
                                 </div>
-                                <p class="card-date">2024-07-02</p>
-<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
                             </div>
                         </div>
                     </div>
-                         <div class="col-md-4">
-                        <div class="card">
+
+            <div class="col-md-4">
+                        <div class="card shadow-sm">
                             <div class="card-body">
-                                <div class="card-title-container">
-                                    <h5 class="card-title">Avg. Response Time</h5>
-                                    <div class="card-number">0.3s</div>
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-container mr-3">
+                                        <i class="bi bi-list-task fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="detail-container">
+                                        <h5 class="card-title mb-0">No. of Tasks</h5>
+                                        <div class="card-number">{{ no_of_tasks }}</div>
+                                    </div>
                                 </div>
-                                <p class="card-date">2024-07-02</p>
-<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+                    <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-container mr-3">
+                                        <i class="bi bi-file-arrow-up fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="detail-container">
+                                        <h5 class="card-title mb-0">No. of Uploaded Documents</h5>
+                                        <div class="card-number">{{ no_of_uploaded_files }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-<!--        <div class="features">-->
-<!--            <div class="feature">-->
-<!--                <h2>01</h2>-->
-<!--                <p> information 1.</p>-->
-<!--            </div>-->
-<!--            <div class="feature">-->
-<!--                <h2>02</h2>-->
-<!--                <p>information 2</p>-->
-<!--            </div>-->
-<!--            <div class="feature">-->
-<!--                <h2>03</h2>-->
-<!--                <p> information 3</p>-->
-<!--            </div>-->
-<!--        </div>-->
+
+                 <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-container mr-3">
+                                        <i class="bi bi-question fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="detail-container">
+                                        <h5 class="card-title mb-0">No. of Questions</h5>
+                                        <div class="card-number">{{ no_of_questions }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                  <div class="col-md-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-container mr-3">
+                                        <i class="bi bi-check-circle fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="detail-container">
+                                        <h5 class="card-title mb-0">No. of Trained Documents</h5>
+                                        <div class="card-number">{{ no_of_trained_files }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+        </div>
+
     </div>
-
-    <div class="flex-grow-1 p-3">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title-container">
-                                    <h5 class="card-title">Active Users</h5>
-                                    <div class="card-number">123</div>
-                                </div>
-                                <p class="card-date">2024-07-02</p>
-<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-                            </div>
-                        </div>
-                    </div>
-                         <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title-container">
-                                    <h5 class="card-title">No. of Questions</h5>
-                                    <div class="card-number">4512</div>
-                                </div>
-                                <p class="card-date">2024-07-02</p>
-<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-                            </div>
-                        </div>
-                    </div>
-                         <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title-container">
-                                    <h5 class="card-title">Avg. Response Time</h5>
-                                    <div class="card-number">0.3s</div>
-                                </div>
-                                <p class="card-date">2024-07-02</p>
-<!--                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <h5 class="card-title"> </h5>
-                                    <canvas id="myChart" width="400" height="400"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <h5 class="card-title">Table</h5>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">First</th>
-                                                <th scope="col">Last</th>
-                                                <th scope="col">Handle</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Jacob</td>
-                                                <td>Thornton</td>
-                                                <td>@fat</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Larry</td>
-                                                <td>the Bird</td>
-                                                <td>@twitter</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-<script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['content1','content2','content3','content4','content5'],
-                datasets: [{
-                    label: 'Content Size',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                },
-                {
-                    label: 'Response Time',
-                    data: [1, 4, 5, 1, 2, 2],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-</script>
 {% endblock %}
 
